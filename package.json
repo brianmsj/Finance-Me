@@ -21,6 +21,7 @@
   "author": "Brian McMinn <brianmsj@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "cross-env": "^5.0.5",
     "express": "^4.16.1",
     "http-proxy-middleware": "^0.17.4",
