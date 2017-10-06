@@ -10,15 +10,20 @@ class Login extends React.Component {
     render() {
 
         return (
-        <div class='col-5'>
+        <div className='main-form col-5'>
+         <h1 className='login-title'>Login to FinanceMe</h1>
          <form>
-         <div class='form-group'>
-          <label for="username">Username</label>
-          <input id='username' class='form-control' type='text'></input>
+         <div className='form-group'>
+          <label htmlFor="username">Username</label>
+          <input id='username' className='form-control' type='text'></input>
          </div>
-         <input type='text'></input>
-         <input type='submit' value='Log In'></input>
+         <div className='form-group'>
+          <label htmlFor='password'>Password</label>
+          <input id='password' className='form-control' type='text'></input>
+         </div>
+         <input className='btn btn-primary' type='submit' value='Log In'></input>
          </form>
+         <p>Not registered? Sign Up Here</p>
         </div>
       )
     }
