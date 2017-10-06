@@ -1,0 +1,35 @@
+{
+  "name": "finance",
+  "version": "1.0.0",
+  "description": "Personal Finance Calculators and Application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm run build",
+    "dev": "run-p dev:server dev:client start",
+    "dev:client": "cd client && cross-env BROWSER=none npm start -- --color=always | xp http://localhost:3000/ http://localhost:8080/",
+    "dev:server": "cd server && npm start",
+    "install": "run-s install:server install:client",
+    "install:server": "cd server && npm install",
+    "install:client": "cd server && npm install"
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "server/node_modules",
+    "client/node_modules"
+  ],
+  "author": "Brian McMinn <brianmsj@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cross-env": "^5.0.5",
+    "express": "^4.16.1",
+    "http-proxy-middleware": "^0.17.4",
+    "npm-run-all": "^4.1.1",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "xp": "^1.0.1"
+  }
+}
