@@ -5,11 +5,18 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+          userNameError: true
         };
-    this.onChange = this.onChange.bind(this);
+    this.checkUserName = this.checkUserName.bind(this);
     }
-    onChange(event){
-    console.log(this.userName.value)
+    checkUserName(event){
+    if(this.userName.value.length < 6) {
+       this.setState({userNameError: false});
+    }
+    else {
+       this.setState({userNameError: true});
+    }
+
 
 
 }
@@ -19,8 +26,8 @@ class Login extends React.Component {
     // }
 
     render() {
-
-
+        let hidden = this.state.userNameError ? 'hidden': '';
+        console.log(hidden)
         return (
           <div>
           <div className="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -39,11 +46,12 @@ class Login extends React.Component {
               <input
                 required={true}
                 ref={ref => this.userName = ref}
-                onChange={this.onChange}
+                onChange={this.checkUserName}
                 id='username'
                 className='form-control'
                 type='text'
                 />
+              <span className={`alert-danger ${hidden}`}>Username must be 6 characters</span>
               </div>
               <div className='form-group'>
               <label htmlFor='password'>Password</label>
