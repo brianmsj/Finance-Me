@@ -1,4 +1,7 @@
 import React from 'react';
+import * as actions from '../actions/index';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 
 class Login extends React.Component {
@@ -10,6 +13,7 @@ class Login extends React.Component {
         };
     this.checkUserName = this.checkUserName.bind(this);
     this.checkPassword = this.checkPassword.bind(this);
+    this.onLoginSubmit = this.onLoginSubmit.bind(this);
     }
     checkUserName(event){
     if(this.userName.value.length < 6) {
@@ -24,6 +28,14 @@ class Login extends React.Component {
       let pw = this.password.value
       let solution = re.test(pw)
       this.setState({passwordError:solution})
+    }
+    onLoginSubmit(event) {
+      console.log('fired')
+      event.preventDefault();
+      var usernombre = this.userName.value
+      var passWorde = this.password.value
+      this.props.dispatch(actions.login(usernombre,passWorde));
+
     }
     // validateEmail(value) {
     // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -65,9 +77,10 @@ class Login extends React.Component {
                 ref={ref => this.password = ref}
                 onChange={this.checkPassword}
                 className='form-control'
-                type='text'/>
+                type='password'/>
               <span className={`alert-danger ${pwHidden}`}>Password must contain 8 char, 1 capital letter, 1 number, 1 special char @#$%^&* </span>
               </div>
+              <button type='submit' onClick={this.onLoginSubmit} className='btn btn-primary'>Login</button>
             </form>
             </div>
           <div className="modal-footer">
@@ -125,5 +138,7 @@ class Login extends React.Component {
       )
     }
 }
+const mapStateToProps = (state, props) => ({
+})
 
-export default Login;
+export default connect(mapStateToProps)(Login)
