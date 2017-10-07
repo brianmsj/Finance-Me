@@ -2,18 +2,19 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  userName: {type: String, required: true, unique: true},
+  firstName: {type: String},
+  lastName: {type: String},
+  username: {type: String, required: true, unique: true},
   email: String,
   password: {type: String, required: true}
 })
 
 UserSchema.methods.apiRepr = function() {
     return {
-        username: this.username || '',
-        firstName: this.firstName || '',
-        lastName: this.lastName || ''
+        username: this.username,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email
     };
 };
 UserSchema.methods.validatePassword = function(password) {

@@ -6,6 +6,8 @@ const http = require('http');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+const {router: usersRouter} = require('./routes/userRoutes');
+
 
 
 mongoose.Promise = global.Promise
@@ -35,6 +37,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/api/users', usersRouter);
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
@@ -45,6 +48,8 @@ app.get(/^(?!\/api(\/|$))/, (req, res) => {
     const index = path.resolve(__dirname, '../client/build', 'index.html');
     res.sendFile(index);
 });
+
+
 
 let server;
 function runServer(port=3001) {
