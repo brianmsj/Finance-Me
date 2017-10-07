@@ -5,14 +5,19 @@ const bodyParser = require('body-parser');
 const http = require('http');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const {router: usersRouter} = require('./routes/userRoutes');
+const {router: authRouter } = require('./routes/authRoutes');
+const {basicStrategy, jwtStrategy} = require('./routes/authStrategy');
 
 
 
 mongoose.Promise = global.Promise
 let secret = {
-  DATABASE_URL: process.env.DATABASE_URL
+  DATABASE_URL: process.env.DATABASE_URL,
+  JWT_SECRET: 'brianmcminn',
+  JWT_EXPIRY: '7d'
 };
 
 if(process.env.NODE_ENV != 'production') {
@@ -37,7 +42,12 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use(passport.initialize());
+passport.use(basicStrategy);
+passport.use(jwtStrategy);
+
 app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
 
 // Serve the built client
 app.use(express.static(path.resolve(__dirname, '../client/build')));
