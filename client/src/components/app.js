@@ -12,8 +12,10 @@ class App extends React.Component {
 
         return (
         <div>
+         <button type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#flipFlop">
+          Login
+         </button>
          <Login />
-         <SignUp />
         </div>
       )
     }

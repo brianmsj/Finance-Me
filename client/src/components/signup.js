@@ -40,6 +40,7 @@ class SignUp extends React.Component {
          <input className='btn btn-primary' type='submit' value='Sign Up'></input>
          </form>
         </div>
+
       )
     }
 }
