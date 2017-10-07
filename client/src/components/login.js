@@ -6,8 +6,20 @@ class Login extends React.Component {
         super(props);
         this.state = {
         };
+    this.onChange = this.onChange.bind(this);
     }
+    onChange(event){
+    console.log(this.userName.value)
+
+
+}
+    // validateEmail(value) {
+    // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // return re.test(value);
+    // }
+
     render() {
+
 
         return (
           <div>
@@ -24,11 +36,18 @@ class Login extends React.Component {
             <form>
               <div className='form-group'>
               <label htmlFor='username'>UserName</label>
-              <input id='username' className='form-control' type='text'/>
+              <input
+                required={true}
+                ref={ref => this.userName = ref}
+                onChange={this.onChange}
+                id='username'
+                className='form-control'
+                type='text'
+                />
               </div>
               <div className='form-group'>
               <label htmlFor='password'>Password</label>
-              <input id='password' className='form-control' type='text'/>
+              <input required={true}id='password' className='form-control' type='text'/>
               </div>
             </form>
             </div>
