@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const http = require('http');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 
@@ -20,6 +21,19 @@ global.secret = secret
 const app = express();
 app.use(bodyParser.json());
 console.log("connecting")
+// Logging
+app.use(morgan('common'));
+
+// CORS
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+    if (req.method === 'OPTIONS') {
+        return res.send(204);
+    }
+    next();
+});
 
 
 // Serve the built client

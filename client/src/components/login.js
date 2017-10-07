@@ -24,7 +24,6 @@ class Login extends React.Component {
       let pw = this.password.value
       let solution = re.test(pw)
       this.setState({passwordError:solution})
-      console.log(this.state.passwordError)
     }
     // validateEmail(value) {
     // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -62,11 +61,11 @@ class Login extends React.Component {
               <div className='form-group'>
               <label htmlFor='password'>Password</label>
               <input required={true}
-              id='password'
-              ref={ref => this.password = ref}
-              onChange={this.checkPassword}
-              className='form-control'
-              type='text'/>
+                id='password'
+                ref={ref => this.password = ref}
+                onChange={this.checkPassword}
+                className='form-control'
+                type='text'/>
               <span className={`alert-danger ${pwHidden}`}>Password must contain 8 char, 1 capital letter, 1 number, 1 special char @#$%^&* </span>
               </div>
             </form>
