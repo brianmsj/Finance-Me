@@ -5,9 +5,11 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          userNameError: true
+          userNameError: true,
+          passwordError: true,
         };
     this.checkUserName = this.checkUserName.bind(this);
+    this.checkPassword = this.checkPassword.bind(this);
     }
     checkUserName(event){
     if(this.userName.value.length < 6) {
@@ -15,11 +17,15 @@ class Login extends React.Component {
     }
     else {
        this.setState({userNameError: true});
+    }}
+
+    checkPassword(event){
+      let re = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/
+      let pw = this.password.value
+      let solution = re.test(pw)
+      this.setState({passwordError:solution})
+      console.log(this.state.passwordError)
     }
-
-
-
-}
     // validateEmail(value) {
     // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // return re.test(value);
@@ -27,7 +33,7 @@ class Login extends React.Component {
 
     render() {
         let hidden = this.state.userNameError ? 'hidden': '';
-        console.log(hidden)
+        let pwHidden = this.state.passwordError ? 'hidden': '';
         return (
           <div>
           <div className="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -55,7 +61,13 @@ class Login extends React.Component {
               </div>
               <div className='form-group'>
               <label htmlFor='password'>Password</label>
-              <input required={true}id='password' className='form-control' type='text'/>
+              <input required={true}
+              id='password'
+              ref={ref => this.password = ref}
+              onChange={this.checkPassword}
+              className='form-control'
+              type='text'/>
+              <span className={`alert-danger ${pwHidden}`}>Password must contain 8 char, 1 capital letter, 1 number, 1 special char @#$%^&* </span>
               </div>
             </form>
             </div>
