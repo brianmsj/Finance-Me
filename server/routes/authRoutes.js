@@ -15,18 +15,14 @@ const createAuthToken = user => {
 
 const router = express.Router();
 
-router.post(
-    '/login',
-    // The user provides a username and password to login
-    passport.authenticate('basic', {session: false}),
+router.post('/login', passport.authenticate('basic', {session: false}),
     (req, res) => {
         const authToken = createAuthToken(req.user.apiRepr());
         res.json({authToken});
     }
 );
 
-router.post(
-    '/refresh',
+router.post('/refresh',
     // The user exchanges an existing valid JWT for a new one with a later
     // expiration
     passport.authenticate('jwt', {session: false}),
