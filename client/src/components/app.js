@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from './login';
-import SignUp from './signup'
 
 class App extends React.Component {
     constructor(props) {

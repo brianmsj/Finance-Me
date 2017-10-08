@@ -8,7 +8,7 @@ const {JWT_SECRET} = require('../config');
 const createAuthToken = user => {
     return jwt.sign({user}, 'brianmcminn', {
         subject: user.username,
-        expiresIn: '7d',
+        expiresIn: '365d',
         algorithm: 'HS256'
     });
 };

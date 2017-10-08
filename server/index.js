@@ -17,7 +17,7 @@ mongoose.Promise = global.Promise
 let secret = {
   DATABASE_URL: process.env.DATABASE_URL,
   JWT_SECRET: 'brianmcminn',
-  JWT_EXPIRY: '7d'
+  JWT_EXPIRY: '365d'
 };
 
 if(process.env.NODE_ENV != 'production') {
@@ -48,6 +48,7 @@ passport.use(jwtStrategy);
 
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
+
 app.get(
     '/api/protected',
     passport.authenticate('jwt', {session: false}),
