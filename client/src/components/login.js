@@ -18,6 +18,7 @@ class Login extends React.Component {
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.choosePassword = this.choosePassword.bind(this);
     this.chooseUserName = this.chooseUserName.bind(this);
+    this.matchPassword = this.matchPassword.bind(this);
     }
     checkUserName(event){
     if(this.userName.value.length < 6) {
@@ -53,6 +54,17 @@ class Login extends React.Component {
       let pass = this.signUpPassword.value
       let acceptable = reg.test(pass)
       this.setState({signUpPasswordError:acceptable})
+    }
+    matchPassword(event) {
+      let reType = this.reTypePassword.value
+      let pass = this.signUpPassword.value
+      if(reType.match(pass)) {
+          console.log(true)
+      }
+      else {
+          console.log(false)
+    }
+
     }
     // validateEmail(value) {
     // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -161,7 +173,7 @@ class Login extends React.Component {
                 ref={ref => this.signUpPassword = ref}
                 onChange={this.choosePassword}
                 className='form-control'
-                type='text'/>
+                type='password'/>
               <span className={`alert-danger ${signUpPwHidden}`}>Password must contain 8 char, 1 capital letter, 1 number, 1 special char @#$%^&* </span>
               </div>
               <div className='form-group'>
@@ -169,8 +181,9 @@ class Login extends React.Component {
               <input
                 id='reTypePassword'
                 ref={ref => this.reTypePassword = ref}
+                onChange={this.matchPassword}
                 className='form-control'
-                type='text'/>
+                type='password'/>
               </div>
               <button type='button' className='btn btn-primary'>Sign Up</button>
             </form>
