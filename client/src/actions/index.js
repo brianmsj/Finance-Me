@@ -23,6 +23,14 @@ export const login = (username,password) => dispatch => {
      .then(json => console.log(json));
 }
 
-export const newUser = (firstname,lastname,email,password) => dispatch => {
-    return fetch('')
+export const newUser = (data) => dispatch => {
+    return fetch(`/api/users`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then((response) => response.json())
+    .then(json => console.log(json));
 }

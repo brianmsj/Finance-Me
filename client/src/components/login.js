@@ -20,6 +20,7 @@ class Login extends React.Component {
     this.choosePassword = this.choosePassword.bind(this);
     this.chooseUserName = this.chooseUserName.bind(this);
     this.matchPassword = this.matchPassword.bind(this);
+    this.userSubmit = this.userSubmit.bind(this);
     }
     checkUserName(event){
     if(this.userName.value.length < 6) {
@@ -43,13 +44,12 @@ class Login extends React.Component {
       this.props.dispatch(actions.login(usernombre,passWorde));
     }
     chooseUserName(event) {
-      console.log(this.chooseUser.value)
       if(this.chooseUser.value.length < 6) {
          this.setState({chooseUserNameError: false});
       }
       else {
          this.setState({chooseUserNameError: true});
-      }}
+    }}
     choosePassword(event) {
       let reg = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/
       let pass = this.signUpPassword.value
@@ -65,12 +65,21 @@ class Login extends React.Component {
       else {
           this.setState({passwordMatchError: false})
     }
+    }
+    userSubmit(event) {
+      console.log('fired user submission');
+      event.preventDefault();
+      let data = {
+      firstName: this.firstname.value,
+      lastName: this.lastname.value,
+      username: this.chooseUser.value,
+      email: this.email.value,
+      password: this.signUpPassword.value,
+       }
+      this.props.dispatch(actions.newUser(data))
+      this.userForm.reset();
 
     }
-    // validateEmail(value) {
-    // var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    // return re.test(value);
-    // }
 
     render() {
         let hidden = this.state.userNameError ? 'hidden': '';
@@ -133,7 +142,7 @@ class Login extends React.Component {
             <h4 className="modal-title" id="modalLabel">Sign Up</h4>
           </div>
             <div className="modal-body">
-            <form>
+            <form ref={ref => this.userForm = ref}>
               <div className='form-group'>
               <label htmlFor='firstname'>First Name</label>
               <input
@@ -188,7 +197,7 @@ class Login extends React.Component {
                 type='password'/>
               <span className={`alert-danger ${passMatch}`}>Passwords must match</span>
               </div>
-              <button type='button' className='btn btn-primary'>Sign Up</button>
+              <button type='button' onClick={this.userSubmit}  className='btn btn-primary'>Sign Up</button>
             </form>
             </div>
           <div className="modal-footer">
