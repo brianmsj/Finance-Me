@@ -11,7 +11,8 @@ class Login extends React.Component {
           userNameError: true,
           passwordError: true,
           signUpPasswordError: true,
-          chooseUserNameError: true
+          chooseUserNameError: true,
+          passwordMatchError: true
         };
     this.checkUserName = this.checkUserName.bind(this);
     this.checkPassword = this.checkPassword.bind(this);
@@ -59,10 +60,10 @@ class Login extends React.Component {
       let reType = this.reTypePassword.value
       let pass = this.signUpPassword.value
       if(reType.match(pass)) {
-          console.log(true)
+          this.setState({passwordMatchError: true})
       }
       else {
-          console.log(false)
+          this.setState({passwordMatchError: false})
     }
 
     }
@@ -76,6 +77,7 @@ class Login extends React.Component {
         let pwHidden = this.state.passwordError ? 'hidden': '';
         let signUpPwHidden = this.state.signUpPasswordError ? 'hidden': '';
         let chooseUserT = this.state.chooseUserNameError ? 'hidden': '';
+        let passMatch = this.state.passwordMatchError ? 'hidden': '';
         return (
           <div>
           <div className="modal fade" id="flipFlop" tabIndex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -164,7 +166,7 @@ class Login extends React.Component {
                 id='email'
                 ref={ref => this.email = ref}
                 className='form-control'
-                type='text'/>
+                type='email'/>
               </div>
               <div className='form-group'>
               <label htmlFor='signUpPassword'>Password</label>
@@ -184,6 +186,7 @@ class Login extends React.Component {
                 onChange={this.matchPassword}
                 className='form-control'
                 type='password'/>
+              <span className={`alert-danger ${passMatch}`}>Passwords must match</span>
               </div>
               <button type='button' className='btn btn-primary'>Sign Up</button>
             </form>

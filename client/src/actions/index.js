@@ -3,6 +3,13 @@ import { browserHistory } from 'react-router';
 
 
 
+
+
+
+
+
+
+//---------------- ASYNC ACTIONS - REGISTRATION / LOGIN -------------------- //
 export const login = (username,password) => dispatch => {
    return fetch(`/api/auth/login`,
      {
@@ -14,4 +21,8 @@ export const login = (username,password) => dispatch => {
      })
      .then((response) => response.json())
      .then(json => console.log(json));
+}
+
+export const newUser = (firstname,lastname,email,password) => dispatch => {
+    return fetch('')
 }
