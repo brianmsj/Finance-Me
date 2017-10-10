@@ -20,7 +20,10 @@ export const login = (username,password) => dispatch => {
        method: 'POST'
      })
      .then((response) => response.json())
-     .then(json => console.log(json));
+     .then(json => {
+       sessionStorage.setItem('jwtToken',json.authToken)
+       console.log(json);
+     });
 }
 
 export const newUser = (data) => dispatch => {
@@ -33,4 +36,10 @@ export const newUser = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => console.log(json));
+}
+
+export const stockPrices = (data) => dispatch => {
+    return fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=15min&outputsize=full&apikey=demo`)
+    .then((response) => response.json())
+
 }

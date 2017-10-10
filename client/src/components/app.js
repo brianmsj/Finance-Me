@@ -1,11 +1,21 @@
 import React from 'react';
 import Login from './login';
+import Stocks from './stocks';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         };
+    }
+    componentDidMount() {
+      var data = sessionStorage.getItem('jwtToken');
+      if(!data) {
+        console.log('no data here')
+      }
+      else {
+        console.log('data is here')
+      }
     }
     render() {
 
@@ -15,6 +25,7 @@ class App extends React.Component {
           Login
          </button>
          <Login />
+         <Stocks />
         </div>
       )
     }
