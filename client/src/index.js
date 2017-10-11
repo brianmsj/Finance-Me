@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import { Route, IndexRoute, BrowserRouter, Switch } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import reducer from './reducers/index';
+import Login from './components/login';
 import {createStore, applyMiddleware} from 'redux';
 import './main.css';
 
@@ -15,7 +16,7 @@ ReactDOM.render(
     <BrowserRouter>
      <div>
       <Switch>
-       <Route path='/' component={App} />
+      <Route path='/' component={App} />
       </Switch>
      </div>
      </BrowserRouter>

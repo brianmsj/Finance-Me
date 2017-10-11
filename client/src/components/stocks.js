@@ -1,5 +1,8 @@
 import React from 'react';
 import Login from './login';
+import * as actions from '../actions/index';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 class Stocks extends React.Component {
     constructor(props) {
@@ -7,14 +10,20 @@ class Stocks extends React.Component {
         this.state = {
         };
     }
+    componentDidMount() {
+      this.props.dispatch(actions.stockPrices())
+    }
     render() {
-
+        console.log(this.props.stocks)
         return (
-        <div>
-          THIS IS THE STOCKS COMPONENT
+        <div className='col-md-4'>
         </div>
       )
     }
 }
 
-export default Stocks;
+const mapStateToProps = (state, props) => ({
+  stocks: state.stocks
+})
+
+export default connect(mapStateToProps)(Stocks)

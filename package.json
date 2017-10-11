@@ -24,6 +24,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "cross-env": "^5.0.5",
     "express": "^4.16.1",
+    "google-finance": "^0.1.9",
     "http-proxy-middleware": "^0.17.4",
     "mongoose": "^4.10.8",
     "morgan": "^1.9.0",

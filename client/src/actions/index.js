@@ -1,12 +1,16 @@
 import * as Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
 
-
-
-
-
-
-
+export const FETCH_STOCKS_SUCCESS = 'FETCH_STOCKS_SUCCESS';
+export const fetchStocksSuccess = (stocks) => ({
+  type: FETCH_STOCKS_SUCCESS,
+  stocks: stocks
+});
+export const FETCH_STOCKS_FAILURE = 'FETCH_STOCKS_FAILURE';
+export const fetchStocksFailure = (error) => ({
+  type: FETCH_STOCKS_FAILURE,
+  error
+});
 
 
 //---------------- ASYNC ACTIONS - REGISTRATION / LOGIN -------------------- //
@@ -38,8 +42,9 @@ export const newUser = (data) => dispatch => {
     .then(json => console.log(json));
 }
 
-export const stockPrices = (data) => dispatch => {
-    return fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=15min&outputsize=full&apikey=demo`)
+export const stockPrices = () => dispatch => {
+    return fetch(`/api/stockquotes`)
     .then((response) => response.json())
-
+    .then(json => {dispatch(fetchStocksSuccess(json))})
+    .catch(error=>{dispatch(fetchStocksFailure())});
 }

@@ -11,7 +11,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 else {
     const app = express();
-        console.log(process.env);
 
     // Proxy everything through to Create React App
     app.use(proxy('http://localhost:3000/', {
