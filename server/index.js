@@ -10,7 +10,6 @@ const googleFinance = require('google-finance');
 
 const {router: usersRouter} = require('./routes/userRoutes');
 const {router: authRouter } = require('./routes/authRoutes');
-const {router: stockRouter } = require('./routes/stockRoutes');
 const {basicStrategy, jwtStrategy} = require('./routes/authStrategy');
 
 
@@ -51,7 +50,6 @@ passport.use(jwtStrategy);
 
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
-app.use('/api', stockRouter)
 
 app.get(
     '/api/protected',
