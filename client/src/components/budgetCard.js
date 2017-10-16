@@ -21,8 +21,15 @@ class BudgetCard extends React.Component {
 
     render() {
       let showInput;
-      if(!this.state.showInput) {showInput=<p className='card-headers-inline title-para' id='divone' onClick={this.changeToInput}>{this.props.categories}</p>}
-      else {showInput=<input className='card-headers-inline title-input' autoFocus onBlur={this.changeToInput} placeholder={this.props.categories} type='text'></input>}
+      if(!this.state.showInput) {showInput=<p
+        className='card-headers-inline title-para'
+        id='divone'
+        onClick={this.changeToInput}>{this.props.categories.toUpperCase()}
+        </p>}
+      else {showInput=<input className='card-headers-inline title-input'
+        autoFocus onBlur={this.changeToInput}
+        placeholder={this.props.categories.toUpperCase()}
+        type='text'></input>}
       return (
       <div className='card-container'>
       <div className='card-headers'>

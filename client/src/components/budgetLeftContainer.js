@@ -15,7 +15,7 @@ class BudgetLeftContainer extends React.Component {
     }
 
     render() {
-      const categories = ['Savings']
+      const categories = ['Savings','Food','Vacation','Giving']
       const containers = categories.map((data,index) => {
           return (
             <div key={index}>
@@ -24,10 +24,12 @@ class BudgetLeftContainer extends React.Component {
           )
       })
       return (
-      <div>
+      <div className='master-card-container'>
        {containers}
+       <button type="button" className="btn btn-default btn-md">
+         <span className="glyphicon glyphicon-plus-sign"></span>Add Item
+       </button>
       </div>
-
     )
 
     }

@@ -1,6 +1,6 @@
 .card-container {
   width: 500px;
-  margin-left: 35px;
+  margin-top: 30px;
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
@@ -10,6 +10,7 @@
 }
 .card-headers {
   display: block;
+  width: 500px;
 }
 .card-headers-inline {
   display: inline-block;
@@ -17,44 +18,65 @@
 #planned{
   color: grey;
   font-size: 13px;
+  margin-left: 91px;
+  margin-bottom: 0;
 }
 #received {
   color: grey;
   font-size: 13px;
+  margin-left: 110px;
+  margin-bottom: 0;
+
 }
 .title-input {
   height: 20px;
   width: 150px;
-  border: none;
+  border: 0;
   font-size: 16px;
 }
 .title-para {
   height: 20px;
   width: 150px;
-  margin-left: 1px;
+  margin-bottom: 0;
 }
-.title-input::-webkit-input-placeholder:hover {
-color: #191919 !important;
+.title-input::-webkit-input-placeholder {
+color: black !important;
 font-size: 16px;
 }
 
 .title-input:-moz-placeholder { /* Firefox 18- */
-color: #191919 !important;
+color: black !important;
 font-size: 16px;
 }
 .title-input:focus {
   background: #ccffcc;
+  border: 0;
 }
 
 .title-input::-moz-placeholder {  /* Firefox 19+ */
-color: #191919 !important;
+color: black !important;
 font-size: 16px;
 }
 
 .title-input:-ms-input-placeholder {
-color: #191919 !important;
+color: black !important;
 font-size: 16px;
 }
-.title-input:focus {
-  outline:none;
+
+.inline-budget-second {
+  width: 65px;
+  margin-left: 70px;
+  display: inline-block;
+
+}
+.inline-budget-first {
+  width: 170px;
+  display: inline-block;
+}
+.inline-budget-third {
+  display: inline-block;
+  margin-left: 106px;
+}
+.master-card-container {
+  margin-left: 50px;
 }

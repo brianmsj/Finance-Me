@@ -8,7 +8,7 @@ class BudgetRow extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-
+          amount: 0.00
       };
 
     }
@@ -16,10 +16,13 @@ class BudgetRow extends React.Component {
 
     render() {
       return (
-      <div className='card-container'>
+      <div className='card-container-row'>
       <div className='inline-budget-row'>
-       <input type='text' placeholder='budget item'></input>
-       <input className='inline-budget-second' type='text' placeholder='budget item'></input>
+       <input className='inline-budget-first'type='text' placeholder='budget item'></input>
+       <input className='inline-budget-second' type='text'></input>
+       <div className='inline-budget-third'>
+       <p>{`$${this.state.amount.toFixed(2)}`}</p>
+       </div>
       </div>
       </div>
 
