@@ -3,20 +3,30 @@ import * as actions from '../actions/index';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import BudgetCard from './budgetCard'
-import BudgetRow from './budgetRow'
+
 
 
 class BudgetLeftContainer extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-              };
+          categories: ['Savings','Food','Vacation','Giving'],
+          itemCount: 1
+                  };
+      this.addCategory = this.addCategory.bind(this);
+    }
+
+    addCategory() {
+      var arrayvar = this.state.categories.slice()
+      arrayvar.push(`New ${this.state.itemCount}`)
+      this.setState({itemCount: this.state.itemCount+1})
+      this.setState({categories: arrayvar})
 
     }
 
     render() {
-      const categories = ['Savings','Food','Vacation','Giving']
-      const containers = categories.map((data,index) => {
+      console.log(this.state.categories)
+          let containers = this.state.categories.map((data,index) => {
           return (
             <div key={index}>
               <BudgetCard categories={data}/>
@@ -26,7 +36,7 @@ class BudgetLeftContainer extends React.Component {
       return (
       <div className='master-card-container'>
        {containers}
-       <button type="button" className="btn btn-default btn-md">
+       <button onClick={this.addCategory} type="button" className="btn btn-default btn-md">
          <span className="glyphicon glyphicon-plus-sign"></span>Add Item
        </button>
       </div>

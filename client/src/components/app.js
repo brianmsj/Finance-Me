@@ -12,10 +12,10 @@ class App extends React.Component {
     componentDidMount() {
       var data = sessionStorage.getItem('jwtToken');
       if(!data) {
-        console.log('no data here')
+
       }
       else {
-        console.log('data is here')
+
       }
     }
     render() {

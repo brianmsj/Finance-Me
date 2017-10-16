@@ -9,26 +9,39 @@ class BudgetCard extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        showInput: false,
+        showInput: false
+
+
       };
     this.changeToInput = this.changeToInput.bind(this)
-
+    this.changeToText = this.changeToText.bind(this)
     }
+
+
     changeToInput() {
-      this.setState({showInput: !this.state.showInput})
+      this.setState({showInput: true})
 
     }
+    changeToText() {
+      this.setState({showInput: false})
+
+    }
+
 
     render() {
+
+
       let showInput;
       if(!this.state.showInput) {showInput=<p
         className='card-headers-inline title-para'
         id='divone'
         onClick={this.changeToInput}>{this.props.categories.toUpperCase()}
         </p>}
-      else {showInput=<input className='card-headers-inline title-input'
-        autoFocus onBlur={this.changeToInput}
-        placeholder={this.props.categories.toUpperCase()}
+      else {showInput=<input
+        className='card-headers-inline title-input'
+        autoFocus
+        onBlur={this.changeToText}
+        ref={ref => this.category = ref}
         type='text'></input>}
       return (
       <div className='card-container'>
