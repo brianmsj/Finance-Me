@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './login';
+import BudgetCard from './budgetCard'
 
 class App extends React.Component {
     constructor(props) {
@@ -24,6 +25,7 @@ class App extends React.Component {
           Login
          </button>
          <Login />
+         <BudgetCard />
         </div>
       )
     }

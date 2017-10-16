@@ -8,6 +8,7 @@ import reducer from './reducers/index';
 import Login from './components/login';
 import {createStore, applyMiddleware} from 'redux';
 import './main.css';
+import './card.css';
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 

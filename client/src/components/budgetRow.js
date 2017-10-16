@@ -2,10 +2,9 @@ import React from 'react';
 import * as actions from '../actions/index';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
-import BudgetRow from './budgetRow'
 
 
-class BudgetCard extends React.Component {
+class BudgetRow extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -18,11 +17,10 @@ class BudgetCard extends React.Component {
     render() {
       return (
       <div className='card-container'>
-       <div className='card-title'>This is a card</div>
-       <BudgetRow />
-       <BudgetRow />
-       <BudgetRow />
-       <BudgetRow />
+      <div className='inline-budget-row'>
+       <input type='text' placeholder='budget item'></input>
+       <input className='inline-budget-second' type='text' placeholder='budget item'></input>
+      </div>
       </div>
 
     )
@@ -33,4 +31,4 @@ class BudgetCard extends React.Component {
 const mapStateToProps = (state, props) => ({
 })
 
-export default connect(mapStateToProps)(BudgetCard)
+export default connect(mapStateToProps)(BudgetRow)
