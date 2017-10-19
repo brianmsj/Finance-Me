@@ -1,16 +1,29 @@
 import * as Cookies from 'js-cookie';
 import { browserHistory } from 'react-router';
 
-export const FETCH_STOCKS_SUCCESS = 'FETCH_STOCKS_SUCCESS';
-export const fetchStocksSuccess = (stocks) => ({
-  type: FETCH_STOCKS_SUCCESS,
-  stocks: stocks
+export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
+export const fetchCategoriesSuccess = (category) => ({
+  type: FETCH_CATEGORIES_SUCCESS,
+  category: category
 });
-export const FETCH_STOCKS_FAILURE = 'FETCH_STOCKS_FAILURE';
-export const fetchStocksFailure = (error) => ({
-  type: FETCH_STOCKS_FAILURE,
+export const FETCH_CATEGORIES_FAILURE = 'FETCH_CATEGORIES_FAILURE';
+export const fetchCategoriesFailure = (error) => ({
+  type: FETCH_CATEGORIES_FAILURE,
   error
 });
+
+export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCESS';
+export const fetchUserInfoSuccess = (name,userId,userName) => ({
+  type: FETCH_USER_INFO_SUCCESS,
+  name,
+  userId,
+  userName
+})
+export const SET_TOKEN_SUCCESS = 'SET_TOKEN_SUCCESS';
+export const setTokenSuccess = (token) => {
+  type: SET_TOKEN_SUCCESS,
+  token
+}
 
 
 //---------------- ASYNC ACTIONS - REGISTRATION / LOGIN -------------------- //
@@ -25,9 +38,13 @@ export const login = (username,password) => dispatch => {
      })
      .then((response) => response.json())
      .then(json => {
+       console.log(json)
        sessionStorage.setItem('jwtToken',json.authToken)
-       console.log(json);
      });
+}
+
+export const getUser = () => dispatch => {
+  return fetch()
 }
 
 export const newUser = (data) => dispatch => {
@@ -41,10 +58,16 @@ export const newUser = (data) => dispatch => {
     .then((response) => response.json())
     .then(json => console.log(json));
 }
-
-export const stockPrices = () => dispatch => {
-    return fetch(`/api/stockquotes`)
-    .then((response) => response.json())
-    .then(json => {dispatch(fetchStocksSuccess(json))})
-    .catch(error=>{dispatch(fetchStocksFailure())});
+export const addCategory= (category) => dispatch => {
+   return fetch(`/api/budget`,
+     {
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       method: 'POST',
+       body: JSON.stringify(category)
+     })
+     .then((response) => response.json())
+     .then(json => dispatch(fetchCategoriesSuccess(json.category)))
+     .catch(error => dispatch(fetchCategoriesFailure(error)))
 }

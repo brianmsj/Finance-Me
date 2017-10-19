@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const BudgetSchema = new mongoose.Schema({
-  categories: {type: String},
+  category: String
 })
 
 const Budget = mongoose.model('Budget', BudgetSchema);

@@ -10,23 +10,19 @@ class BudgetLeftContainer extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-          categories: ['Savings','Food','Vacation','Giving'],
-          itemCount: 1
-                  };
+      }
       this.addCategory = this.addCategory.bind(this);
     }
-
     addCategory() {
-      var arrayvar = this.state.categories.slice()
-      arrayvar.push(`New ${this.state.itemCount}`)
-      this.setState({itemCount: this.state.itemCount+1})
-      this.setState({categories: arrayvar})
-
+      var item = {
+        category: "New"
+      }
+      this.props.dispatch(actions.addCategory(item))
     }
 
     render() {
-      console.log(this.state.categories)
-          let containers = this.state.categories.map((data,index) => {
+          let category = this.props.category
+          let containers = category.map((data,index) => {
           return (
             <div key={index}>
               <BudgetCard categories={data}/>
@@ -46,6 +42,8 @@ class BudgetLeftContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
+  category: state.category
+
 })
 
 export default connect(mapStateToProps)(BudgetLeftContainer)

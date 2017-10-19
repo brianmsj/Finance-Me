@@ -82,6 +82,7 @@ class Login extends React.Component {
     }
 
     render() {
+        console.log(this.props.token)
         let hidden = this.state.userNameError ? 'hidden': '';
         let pwHidden = this.state.passwordError ? 'hidden': '';
         let signUpPwHidden = this.state.signUpPasswordError ? 'hidden': '';
@@ -211,6 +212,7 @@ class Login extends React.Component {
     }
 }
 const mapStateToProps = (state, props) => ({
+    token: state.token
 })
 
 export default connect(mapStateToProps)(Login)
