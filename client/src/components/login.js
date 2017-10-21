@@ -2,6 +2,9 @@ import React from 'react';
 import * as actions from '../actions/index';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import { Redirect } from 'react-router';
+import App from './app'
+import $ from 'jquery';
 
 
 class Login extends React.Component {
@@ -12,7 +15,7 @@ class Login extends React.Component {
           passwordError: true,
           signUpPasswordError: true,
           chooseUserNameError: true,
-          passwordMatchError: true
+          passwordMatchError: true,
         };
     this.checkUserName = this.checkUserName.bind(this);
     this.checkPassword = this.checkPassword.bind(this);
@@ -36,12 +39,13 @@ class Login extends React.Component {
       let solution = re.test(pw)
       this.setState({passwordError:solution})
     }
+
     onLoginSubmit(event) {
-      console.log('fired')
       event.preventDefault();
       var usernombre = this.userName.value
       var passWorde = this.password.value
-      this.props.dispatch(actions.login(usernombre,passWorde));
+      this.props.dispatch(actions.login(usernombre,passWorde))
+      this.setState({fireRedirect: true});
     }
     chooseUserName(event) {
       if(this.chooseUser.value.length < 6) {
@@ -83,18 +87,24 @@ class Login extends React.Component {
 
 
     render() {
-        console.log(this.props.token)
+
         let hidden = this.state.userNameError ? 'hidden': '';
         let pwHidden = this.state.passwordError ? 'hidden': '';
         let signUpPwHidden = this.state.signUpPasswordError ? 'hidden': '';
         let chooseUserT = this.state.chooseUserNameError ? 'hidden': '';
         let passMatch = this.state.passwordMatchError ? 'hidden': '';
+        if (this.props.loggedIn) {
+            $('.modal-backdrop').remove()
+            return <App />;
+        }
+
+
         return (
           <div>
           <h1> THIS IS LOGIN</h1>
           <button type="button" className="btn btn-primary btn-lg"
                           data-toggle="modal" data-target="#flipFlop">Login</button>
-          <div className="modal fade" id="flipFlop" tabIndex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+          <div className={`modal fade`} id="flipFlop" tabIndex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
             <div className="modal-content">
             <div className="modal-header">
@@ -103,7 +113,7 @@ class Login extends React.Component {
           </button>
             <h4 className="modal-title" id="modalLabel">Login</h4>
           </div>
-            <div className="modal-body">
+            <div className={`modal-body`}>
             <form>
               <div className='form-group'>
               <label htmlFor='username'>UserName</label>
@@ -146,7 +156,7 @@ class Login extends React.Component {
           </button>
             <h4 className="modal-title" id="modalLabel">Sign Up</h4>
           </div>
-            <div className="modal-body">
+            <div className={`modal-body`}>
             <form ref={ref => this.userForm = ref}>
               <div className='form-group'>
               <label htmlFor='firstname'>First Name</label>
@@ -202,7 +212,7 @@ class Login extends React.Component {
                 type='password'/>
               <span className={`alert-danger ${passMatch}`}>Passwords must match</span>
               </div>
-              <button type='button' onClick={this.userSubmit}  className='btn btn-primary'>Sign Up</button>
+              <button type='button' onClick={this.userSubmit} data-toggle="modal" data-dismiss='modal' data-target="#flipFlop"  className='btn btn-primary'>Sign Up</button>
             </form>
             </div>
           <div className="modal-footer">
@@ -216,7 +226,8 @@ class Login extends React.Component {
     }
 }
 const mapStateToProps = (state, props) => ({
-    token: state.token
+    token: state.token,
+    loggedIn: state.loggedIn
 })
 
 export default connect(mapStateToProps)(Login)

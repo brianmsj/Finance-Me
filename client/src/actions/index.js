@@ -20,10 +20,16 @@ export const fetchUserInfoSuccess = (name,userId,userName) => ({
   userName
 })
 export const SET_TOKEN_SUCCESS = 'SET_TOKEN_SUCCESS';
-export const setTokenSuccess = (token) => {
+export const setTokenSuccess = (token) => ({
   type: SET_TOKEN_SUCCESS,
   token
-}
+});
+export const SET_TOKEN_FAILURE = 'SET_TOKEN_FAILURE';
+export const setTokenFailure = (error) => ({
+  type: SET_TOKEN_FAILURE,
+  error
+});
+
 
 
 //---------------- ASYNC ACTIONS - REGISTRATION / LOGIN -------------------- //
@@ -37,11 +43,9 @@ export const login = (username,password) => dispatch => {
        method: 'POST'
      })
      .then((response) => response.json())
-     .then(json => {
-       console.log(json)
-       localStorage.setItem('jwtToken',json.authToken)
-     });
-}
+     .then(json => dispatch(setTokenSuccess(json.authToken)))
+     .catch(error => dispatch(setTokenFailure(error)))
+   };
 
 
 export const newUser = (data) => dispatch => {

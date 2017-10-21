@@ -1,7 +1,10 @@
 import React from 'react';
 import Login from './login';
 import BudgetCard from './budgetCard'
-import BudgetLeftContainer from './budgetLeftContainer'
+import { connect } from 'react-redux';
+import BudgetLeftContainer from './budgetLeftContainer';
+
+
 
 class App extends React.Component {
     constructor(props) {
@@ -10,14 +13,21 @@ class App extends React.Component {
         };
     }
 
+
     render() {
 
         return (
         <div>
-         This is the home page mother fucker
+          <BudgetLeftContainer />
         </div>
       )
     }
 }
 
-export default App;
+const mapStateToProps = (state, props) => ({
+  token: state.token,
+  loggedIn: state.loggedIn
+
+})
+
+export default connect(mapStateToProps)(App)

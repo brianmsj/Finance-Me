@@ -5,6 +5,7 @@ const initialState = {
   userId: '',
   userName: '',
   token: '',
+  loggedIn: false,
   category: ['Savings','Groceries','Transportation','Giving']
 };
 
@@ -18,16 +19,12 @@ export default (state=initialState, action) => {
       return {...state,
                 category: [...state.category,action.category]
       };
-    case actions.FETCH_CATEGORIES_SUCCESS:
+    case actions.SET_TOKEN_SUCCESS:
       return {...state,
-                token: action.token
+                token: action.token,
+                loggedIn: true
         };
 
    }
   return state;
 };
-
-
-
-
-// Claim ID:	DI-1003-724-447
