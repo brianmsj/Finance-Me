@@ -91,6 +91,9 @@ class Login extends React.Component {
         let passMatch = this.state.passwordMatchError ? 'hidden': '';
         return (
           <div>
+          <h1> THIS IS LOGIN</h1>
+          <button type="button" className="btn btn-primary btn-lg"
+                          data-toggle="modal" data-target="#flipFlop">Login</button>
           <div className="modal fade" id="flipFlop" tabIndex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
             <div className="modal-content">

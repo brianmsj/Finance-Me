@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+
 const UserSchema = new mongoose.Schema({
   firstName: {type: String},
   lastName: {type: String},
   username: {type: String, required: true, unique: true},
   email: String,
-  password: {type: String, required: true}
-})
+  password: {type: String, required: true},
+
+}
+)
 
 UserSchema.methods.apiRepr = function() {
     return {
+        _id: this._id, 
         username: this.username,
         firstName: this.firstName,
         lastName: this.lastName,

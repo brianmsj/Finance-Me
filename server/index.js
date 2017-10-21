@@ -28,7 +28,7 @@ global.secret = secret
 
 const app = express();
 app.use(bodyParser.json());
-console.log("connecting")
+
 // Logging
 app.use(morgan('common'));
 
@@ -44,9 +44,12 @@ app.use(function(req, res, next) {
     next();
 });
 
+
+
 app.use(passport.initialize());
 passport.use(basicStrategy);
 passport.use(jwtStrategy);
+
 
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
@@ -56,6 +59,7 @@ app.get(
     '/api/protected',
     passport.authenticate('jwt', {session: false}),
     (req, res) => {
+        console.log(req.user)
         return res.json({
             data: 'rosebud'
         });

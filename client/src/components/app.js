@@ -9,18 +9,12 @@ class App extends React.Component {
         this.state = {
         };
     }
-    componentDidMount() {
-      let token = sessionStorage.getItem('jwtToken')
-    }
+
     render() {
-        let login;
-        if(this.state.data===null) {login=<div><button type="button" className="btn btn-primary btn-lg"
-                         data-toggle="modal" data-target="#flipFlop">Login</button><Login /></div>}
 
         return (
         <div>
-         {login}
-         <BudgetLeftContainer />
+         This is the home page mother fucker
         </div>
       )
     }

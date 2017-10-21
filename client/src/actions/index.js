@@ -39,13 +39,10 @@ export const login = (username,password) => dispatch => {
      .then((response) => response.json())
      .then(json => {
        console.log(json)
-       sessionStorage.setItem('jwtToken',json.authToken)
+       localStorage.setItem('jwtToken',json.authToken)
      });
 }
 
-export const getUser = () => dispatch => {
-  return fetch()
-}
 
 export const newUser = (data) => dispatch => {
     return fetch(`/api/users`, {
