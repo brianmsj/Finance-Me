@@ -8,6 +8,7 @@ import Dollar from  '../images/icon-dollarbill.svg'
 import Steps from '../images/icon-steps.svg'
 import Phone from '../images/icon-phone.svg'
 import Wheel from '../images/icon-wheel.svg'
+import Girl from '../images/Girl-using-Gold-iPhone-5s.jpg'
 
 
 class Login extends React.Component {
@@ -149,6 +150,16 @@ class Login extends React.Component {
            <div>
            </div>
           </div>
+          </div>
+          <div className='ribbon-wrapper'>
+            <div className='ribbon-box'>
+              <div className='ribbon-text-container'>
+              <p className='ribbon-title'>Turn Your Goals Into Results</p>
+              <p className='ribbon-motto'>Budgeting in EveryDollar is easy — it takes less than 10 minutes to create your first budget! Even better, EveryDollar helps millions of people just like you take control of their money to achieve their money goals. Pay off debt and save big this year with EveryDollar.</p>
+              </div>
+            </div>
+            <div className='ribbon-box-image'>
+            </div>
           </div>
           <div className={`modal fade`} id="flipFlop" tabIndex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
