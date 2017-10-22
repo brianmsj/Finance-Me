@@ -60,9 +60,34 @@
 }
 .ribbon-text-container {
   width: 300px;
-  margin: auto;
   text-align: center;
+  position: absolute;
+  margin-top: 17px;
+  left: 12%;
 
+}
+.ribbon-text-container-bottom {
+  width: 300px;
+  text-align: center;
+  position: absolute;
+  margin-top: 17px;
+  right: 14%;
+}
+.ribbon-text-container-middle {
+  width: 500px;
+  text-align: center;
+  position: absolute;
+  margin-top: 60px;
+  left: 20%;
+  color: #fff;
+}
+.ribbon-title {
+  font-family: 'Arvo', sans-serif;
+  font-size: 3rem;
+}
+.ribbon-motto {
+  font-family: 'Arvo', sans-serif;
+  font-size: 1.6rem;
 }
 .form-button-signup:hover {
   background-color: #ef8319;
@@ -84,11 +109,23 @@
   height: 100%;
   width: 50%;
 }
+.aqua {
+  background-color: #299bb3
+}
 .ribbon-box-image{
   display: inline-block;
   height: 100%;
   width: 50%;
   background-image: url('./images/girl-phone.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+.ribbon-box-image-bottom{
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+  background-image: url('./images/debt-free.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 
@@ -113,6 +150,9 @@
   width: 100%;
 }
 .ribbon-box-image {
+  display: none;
+}
+.ribbon-box-image-bottom {
   background-size: cover;
   height: 100%;
   width: 100%;

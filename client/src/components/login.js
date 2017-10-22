@@ -155,10 +155,28 @@ class Login extends React.Component {
             <div className='ribbon-box'>
               <div className='ribbon-text-container'>
               <p className='ribbon-title'>Turn Your Goals Into Results</p>
-              <p className='ribbon-motto'>Budgeting in EveryDollar is easy — it takes less than 10 minutes to create your first budget! Even better, EveryDollar helps millions of people just like you take control of their money to achieve their money goals. Pay off debt and save big this year with EveryDollar.</p>
+              <p className='ribbon-motto'>Budgeting with FinanceMe is easy — it takes less than 10 minutes to create your first budget! Even better, FinanceMe helps people just like you take control of their money to achieve their money goals. Pay off debt and save big this year with FinanceMe.</p>
               </div>
             </div>
             <div className='ribbon-box-image'>
+            </div>
+          </div>
+          <div className='ribbon-wrapper aqua'>
+          <div className='ribbon-box'>
+            <div className='ribbon-text-container-middle'>
+            <p className='ribbon-title'>Your Life. Your Money. In Sync</p>
+            <p className='ribbon-motto'>Create a budget, manage money, and track spending on the go with FinanceMe platform. FinanceMe syncs across devices so whether you are budgeting from your desktop or phone, your finances are always up to date.</p>
+            </div>
+          </div>
+          </div>
+          <div className='ribbon-wrapper'>
+            <div className='ribbon-box-image-bottom'>
+            </div>
+            <div className='ribbon-box'>
+              <div className='ribbon-text-container-bottom'>
+              <p className='ribbon-title'>Win With FinanceMe and Reach Goals</p>
+              <p className='ribbon-motto'>From paying off thousands in debt to saving up for home repairs and dream vacations, check out some of our favorite FinanceMe budgeter wins!</p>
+              </div>
             </div>
           </div>
           <div className={`modal fade`} id="flipFlop" tabIndex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
