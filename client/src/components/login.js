@@ -212,7 +212,7 @@ class Login extends React.Component {
                 type='password'/>
               <span className={`alert-danger ${pwHidden}`}>Password must contain 8 char, 1 capital letter, 1 number, 1 special char @#$%^&* </span>
               </div>
-              <button type='submit' onClick={this.onLoginSubmit} className='btn btn-primary'>Login</button>
+              <button type='submit' onClick={this.onLoginSubmit} className='btn btn-primary aqua'>Login</button>
             </form>
             </div>
           <div className="modal-footer">
@@ -287,7 +287,7 @@ class Login extends React.Component {
                 type='password'/>
               <span className={`alert-danger ${passMatch}`}>Passwords must match</span>
               </div>
-              <button type='button' onClick={this.userSubmit} data-toggle="modal" data-dismiss='modal' data-target="#flipFlop"  className='btn btn-primary'>Sign Up</button>
+              <button type='button' onClick={this.userSubmit} data-toggle="modal" data-dismiss='modal' data-target="#flipFlop"  className='btn btn-primary aqua'>Sign Up</button>
             </form>
             </div>
           <div className="modal-footer">

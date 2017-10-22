@@ -1,6 +1,7 @@
 import React from 'react';
 import * as actions from '../actions/index';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import BudgetCard from './budgetCard'
 
 
@@ -10,30 +11,21 @@ class BudgetLeftContainer extends React.Component {
       super(props)
       this.state = {
       }
-      this.addCategory = this.addCategory.bind(this);
-    }
-    addCategory() {
-      var item = {
-        category: "New"
-      }
-      this.props.dispatch(actions.addCategory(item))
+
     }
 
+
     render() {
-          let category = this.props.category
-          let containers = category.map((data,index) => {
-          return (
-            <div key={index}>
-              <BudgetCard categories={data}/>
-            </div>
-          )
-      })
+      console.log(this.props.budgets)
+      let budgets;
+      if(this.props.budgets.length < 1) {
+        (budgets=<div><p>You have No Budgets. Create 12 months of budgets</p><button>
+        Click Here</button></div>)
+      }
+
       return (
       <div className='master-card-container'>
-       {containers}
-       <button onClick={this.addCategory} type="button" className="btn btn-default btn-md">
-         <span className="glyphicon glyphicon-plus-sign"></span>Add Item
-       </button>
+        {budgets}
       </div>
     )
 
@@ -41,8 +33,7 @@ class BudgetLeftContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  category: state.category
-
+    budgets: state.budgets
 })
 
 export default connect(mapStateToProps)(BudgetLeftContainer)

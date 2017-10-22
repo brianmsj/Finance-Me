@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Schema = mongoose.Schema;
 
 
 const UserSchema = new mongoose.Schema({
@@ -8,17 +9,19 @@ const UserSchema = new mongoose.Schema({
   username: {type: String, required: true, unique: true},
   email: String,
   password: {type: String, required: true},
+  months: []
 
 }
 )
 
 UserSchema.methods.apiRepr = function() {
     return {
-        _id: this._id, 
+        _id: this._id,
         username: this.username,
         firstName: this.firstName,
         lastName: this.lastName,
-        email: this.email
+        email: this.email,
+        months: this.months
     };
 };
 UserSchema.methods.validatePassword = function(password) {
