@@ -1,10 +1,13 @@
 import React from 'react';
 import * as actions from '../actions/index';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
-import { Redirect } from 'react-router';
 import App from './app'
 import $ from 'jquery';
+import Logo from '../images/financeme.png'
+import Dollar from  '../images/icon-dollarbill.svg'
+import Steps from '../images/icon-steps.svg'
+import Phone from '../images/icon-phone.svg'
+import Wheel from '../images/icon-wheel.svg'
 
 
 class Login extends React.Component {
@@ -101,9 +104,52 @@ class Login extends React.Component {
 
         return (
           <div>
-          <h1> THIS IS LOGIN</h1>
-          <button type="button" className="btn btn-primary btn-lg"
-                          data-toggle="modal" data-target="#flipFlop">Login</button>
+          <div className='main-title-image-container'>
+          <div className='main-title-container'>
+          <img src={Logo} role='presentation' />
+          <h1 className='main-title-slogan'>Live Free. Worry Less.</h1>
+          <button type="button" className="btn btn-primary btn-lg form-button-signup"
+                          data-toggle="modal" data-target="#second">Sign Up ( Its Free! )</button>
+          </div>
+          </div>
+          <div className='budget-item-inline'>
+          <div className='budget-item-container'>
+            <div className='icon-container'>
+             <img src={Dollar} />
+            </div>
+            <p className='budget-item-title'>Easy Budgeting</p>
+            <p className='budget-item-motto'>No more pen, paper or complicated spreadsheets</p>
+           <div>
+           </div>
+          </div>
+          <div className='budget-item-container'>
+            <div className='icon-container'>
+             <img src={Wheel} />
+            </div>
+            <p className='budget-item-title'>Helpful Visuals</p>
+            <p className='budget-item-motto'>Quick views for whats planned, spent and remaining.</p>
+           <div>
+           </div>
+          </div>
+          <div className='budget-item-container'>
+            <div className='icon-container'>
+             <img src={Phone} />
+            </div>
+            <p className='budget-item-title'>Budget Anywhere</p>
+            <p className='budget-item-motto'>Access FinanceMe from your computer, iPhone or Android.</p>
+           <div>
+           </div>
+          </div>
+          <div className='budget-item-container four'>
+            <div className='icon-container'>
+             <img src={Steps} />
+            </div>
+            <p className='budget-item-title'>Proven Plan</p>
+            <p className='budget-item-motto'>A plan that has helped millions beat debt and build wealth.</p>
+           <div>
+           </div>
+          </div>
+          </div>
           <div className={`modal fade`} id="flipFlop" tabIndex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -142,7 +188,7 @@ class Login extends React.Component {
             </div>
           <div className="modal-footer">
           <p>Not Registered?</p>
-          <button type="button" className="btn btn-secondary" data-toggle="modal" data-target="#second" data-dismiss="modal">Sign Up</button>
+          <button type="button" className="btn btn-secondary form-button-signup" data-toggle="modal" data-target="#second" data-dismiss="modal">Sign Up</button>
           </div>
           </div>
           </div>
@@ -153,9 +199,9 @@ class Login extends React.Component {
             <div className="modal-header">
             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
-          </button>
+            </button>
             <h4 className="modal-title" id="modalLabel">Sign Up</h4>
-          </div>
+           </div>
             <div className={`modal-body`}>
             <form ref={ref => this.userForm = ref}>
               <div className='form-group'>
@@ -216,7 +262,6 @@ class Login extends React.Component {
             </form>
             </div>
           <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-toggle="modal" data-target="#second" data-dismiss="modal">Close</button>
           </div>
           </div>
           </div>

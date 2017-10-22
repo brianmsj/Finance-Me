@@ -1,5 +1,4 @@
-import * as Cookies from 'js-cookie';
-import { browserHistory } from 'react-router';
+
 
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 export const fetchCategoriesSuccess = (category) => ({

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import thunk from 'redux-thunk';
-import {replaceState,Route, IndexRoute, BrowserRouter, Switch,withRouter,Link,Redirect } from 'react-router-dom';
+import {Route,BrowserRouter, Switch,} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import reducer from './reducers/index';
 import Login from './components/login';

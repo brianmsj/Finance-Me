@@ -9,3 +9,71 @@
 .hidden {
   display:none;
 }
+.main-title-slogan {
+  color: #000080;
+  font-size: 50px;
+}
+.main-title-container{
+  text-align: center;
+  padding-top: 10%;
+  padding-bottom: 25%;
+}
+.main-title-image-container {
+  background-image: url('./images/couple.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+}
+.modal-header::before {
+   content: none;
+}
+.form-button-signup {
+  margin-bottom: 10px;
+  background-color: #EE7600;
+  color: white;
+  border: 1px solid white;
+}
+.budget-item-inline {
+  display: block;
+  padding-top: 30px;
+  margin: auto;
+}
+.budget-item-container {
+  font-family: 'Arvo', sans-serif;
+  width: 230px;
+  text-align: center;
+  display: inline-block;
+  margin-left: 4%;
+}
+.budget-item-title {
+  font-size: 2.6rem;
+}
+
+.budget-item-motto {
+  font-size: 1.5rem;
+}
+.icon-container {
+  height: 65px;
+  width: 65px;
+  margin: auto;
+}
+.form-button-signup:hover {
+  background-color: #ef8319;
+  color: white;
+  border: 1px solid white;
+}
+.btn-primary:focus {
+  background-color: #EE7600;
+  outline: none;
+}
+@media only screen and (max-width: 600px)  {
+  .main-title-slogan {
+    font-size: 36px;
+  }
+  .main-title-image-container {
+    padding: 0;
+  }
+  .budget-item-container {
+    width: 400px;
+  }
+}

@@ -1,6 +1,4 @@
 import React from 'react';
-import Login from './login';
-import BudgetCard from './budgetCard'
 import { connect } from 'react-redux';
 import BudgetLeftContainer from './budgetLeftContainer';
 
