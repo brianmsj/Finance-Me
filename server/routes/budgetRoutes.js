@@ -12,19 +12,8 @@ const jsonParser = bodyParser.json();
 
 
 router.post('/newbudgets',passport.authenticate('jwt', {session: false}),(req,res) => {
-  var months = new Array();
-    months[0] = "January";
-    months[1] = "February";
-    months[2] = "March";
-    months[3] = "April";
-    months[4] = "May";
-    months[5] = "June";
-    months[6] = "July";
-    months[7] = "August";
-    months[8] = "September";
-    months[9] = "October";
-    months[10] = "November";
-    months[11] = "December";
+  var months = ["January","February","March","April","May","June","July","August","September"
+                ,"October","November","December"];
  for(let i=0;i<months.length;i++) {
    Month.create({
        month: months[i],
@@ -34,22 +23,20 @@ router.post('/newbudgets',passport.authenticate('jwt', {session: false}),(req,re
 
 })
 
-router.get('/mybudgets', passport.authenticate('jwt', {session: false}), (req, res) => {
-
-  const query = {
-    createdBy: {$eq: req.user._id}
-  };
-
-  Month.find(query)
-    .exec()
-    .then(budgets => {
-      budgets.length > 0 ? res.json(budgets) : res.json({message: `You Haven't Created Any Budgets Yet`});
+router.get('/mynewbudgets', passport.authenticate('jwt', {session: false}), (req, res) => {
+  Month.find({createdBy:req.user._id})
+  .then(month => {
+     User.findOneAndUpdate({_id: req.user._id}, {$push: {months: {$each: month }}})
+      .then(data => res.status(200).json(data))
+      .catch(error => res.status(500).json(error))
     })
-    .catch(err => {
-      res.status(500).json({error: 'something went wrong'});
-    });
+  })
 
-});
+router.get('/mybudgets', passport.authenticate('jwt', {session: false}), (req,res) => {
+  User.find({_id: req.user._id})
+    .then(data => res.status(200).json(data))
+    .catch(error => res.status(500).json(error))
+})
 
 
 

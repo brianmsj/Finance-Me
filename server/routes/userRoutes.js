@@ -122,14 +122,6 @@ router.post('/', jsonParser, (req, res) => {
         });
 });
 
-router.get('/', passport.authenticate('jwt'), (req, res) => {
-  const query = {
-    _id: {$eq: req.user._id}
-    };
-    console.log(query)
-    return User.find(query)
-        .then(users => res.json(users.map(user => user.apiRepr())))
-        .catch(err => res.status(500).json({message: 'Internal server error'}));
-});
+
 
 module.exports = {router};
