@@ -1,4 +1,6 @@
-
+import * as Cookies from 'js-cookie';
+import fetch from 'isomorphic-fetch'
+import 'babel-polyfill'
 
 export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCESS';
 export const fetchUserInfoSuccess = (name,userId,userName) => ({
@@ -17,6 +19,16 @@ export const setTokenFailure = (error) => ({
   type: SET_TOKEN_FAILURE,
   error
 });
+export const LOAD_BUDGET_SUCCESS = 'LOAD_BUDGET_SUCCESS';
+export const loadBudgetSuccess = (budgets) => ({
+  type: LOAD_BUDGET_SUCCESS,
+  budgets
+});
+export const LOAD_DUMMY_BUDGETS = 'LOAD_DUMMY_BUDGETS';
+export const loadDummyBudgets = (dummyBudgets) => ({
+  type: LOAD_DUMMY_BUDGETS,
+  dummyBudgets
+})
 
 
 
@@ -32,6 +44,7 @@ export const login = (username,password) => dispatch => {
      })
      .then((response) => response.json())
      .then(json => dispatch(setTokenSuccess(json.authToken)))
+     .then(json => Cookies.set('accessToken',json.token, { expires: 1 }))
      .catch(error => dispatch(setTokenFailure(error)))
    };
 
@@ -46,4 +59,42 @@ export const newUser = (data) => dispatch => {
     })
     .then((response) => response.json())
     .then(json => console.log(json));
+}
+
+const newBudgets = () => dispatch => {
+   let accessToken = Cookies.get('token');
+   return fetch(`api/budget/newbudgets`, {
+     headers: {'Authorization': `bearer ${accessToken}`
+   },
+   method: 'POST'
+ })
+ .then((response) => response.json())
+ .then((json) => dispatch(loadDummyBudgets(json)))
+}
+
+const populateBudgets = () => dispatch => {
+   let accessToken = Cookies.get('token');
+   return fetch(`api/budget/mynewbudgets`, {
+     headers: {'Authorization': `bearer ${accessToken}`
+   }
+ })
+ .then((response) => response.json())
+ .then((json) => console.log(json))
+}
+
+const getBudgets = () => dispatch => {
+   let accessToken = Cookies.get('token');
+   return fetch(`api/budget/mybudgets`, {
+     headers: {'Authorization': `bearer ${accessToken}`
+   }
+ })
+ .then((response) => response.json())
+ .then(json => dispatch(loadBudgetSuccess(json[0].months)))
+}
+
+export const budgetCreator = () => dispatch => {
+  Promise.all([
+    dispatch(newBudgets()),
+    dispatch(populateBudgets())
+  ]);
 }

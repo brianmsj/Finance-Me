@@ -21,20 +21,24 @@
   "author": "Brian McMinn <brianmsj@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.0.0-alpha.6",
+    "cookies": "^0.7.1",
     "cross-env": "^5.0.5",
     "express": "^4.16.1",
     "google-finance": "^0.1.9",
     "http-proxy-middleware": "^0.17.4",
     "jquery": "^3.2.1",
+    "js-cookie": "^2.1.4",
     "mongoose": "^4.10.8",
     "morgan": "^1.9.0",
     "npm-run-all": "^4.1.1",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
+    "react-router": "^3.2.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "universal-cookie": "^2.1.0",
     "xp": "^1.0.1"
   }
 }

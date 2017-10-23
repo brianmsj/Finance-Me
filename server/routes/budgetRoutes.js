@@ -12,15 +12,22 @@ const jsonParser = bodyParser.json();
 
 
 router.post('/newbudgets',passport.authenticate('jwt', {session: false}),(req,res) => {
-  var months = ["January","February","March","April","May","June","July","August","September"
-                ,"October","November","December"];
- for(let i=0;i<months.length;i++) {
-   Month.create({
-       month: months[i],
-       createdBy: req.user._id,
-   }).then(month => res.status(200).json(month))
- }
-
+  var id = req.user._id
+  var months = [{month:"January",createdBy:id},
+                {month:"February",createdBy:id},
+                {month:"March",createdBy:id},
+                {month:"April",createdBy:id},
+                {month:"May",createdBy:id},
+                {month:"June",createdBy:id},
+                {month:"July",createdBy:id},
+                {month:"August",createdBy:id},
+                {month:"September",createdBy:id},
+                {month:"October",createdBy:id},
+                {month:"November",createdBy:id},
+                {month:"December",createdBy:id}]
+   Month.insertMany(months)
+  .then(data => res.status(200).json(data))
+  .catch(error => res.status(500).json(error));
 })
 
 router.get('/mynewbudgets', passport.authenticate('jwt', {session: false}), (req, res) => {
@@ -37,6 +44,12 @@ router.get('/mybudgets', passport.authenticate('jwt', {session: false}), (req,re
     .then(data => res.status(200).json(data))
     .catch(error => res.status(500).json(error))
 })
+
+router.get('/removebudgets', passport.authenticate('jwt', {session: false}), (req, res) => {
+     User.findOneAndUpdate({_id: req.user._id}, {$set: {months: [] }})
+      .then(data => res.status(200).json(data))
+      .catch(error => res.status(500).json(error))
+    })
 
 
 

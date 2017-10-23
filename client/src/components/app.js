@@ -1,31 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BudgetLeftContainer from './budgetLeftContainer';
+import * as Cookies from 'js-cookie';
 
 
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
-
-
     render() {
-
         return (
         <div>
-          <BudgetLeftContainer />
+          {this.props.children}
         </div>
       )
     }
 }
-
-const mapStateToProps = (state, props) => ({
-  token: state.token,
-  loggedIn: state.loggedIn
-
-})
-
-export default connect(mapStateToProps)(App)
+export default connect()(App)

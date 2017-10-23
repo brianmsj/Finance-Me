@@ -6,7 +6,6 @@ const http = require('http');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
-
 const {router: usersRouter} = require('./routes/userRoutes');
 const {router: authRouter } = require('./routes/authRoutes');
 const {router: budgetRouter} = require('./routes/budgetRoutes');
@@ -28,6 +27,7 @@ global.secret = secret
 
 const app = express();
 app.use(bodyParser.json());
+
 
 // Logging
 app.use(morgan('common'));
@@ -54,6 +54,8 @@ passport.use(jwtStrategy);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/budget', budgetRouter);
+
+
 
 app.get(
     '/api/protected',

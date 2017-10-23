@@ -11,16 +11,20 @@ class BudgetLeftContainer extends React.Component {
       super(props)
       this.state = {
       }
+      this.createBudgets = this.createBudgets.bind(this)
+    }
 
+    createBudgets() {
+      console.log('action fired budgets')
+      this.props.dispatch(actions.budgetCreator());
     }
 
 
     render() {
-      console.log(this.props.budgets)
       let budgets;
-      if(this.props.budgets.length < 1) {
-        (budgets=<div><p>You have No Budgets. Create 12 months of budgets</p><button>
-        Click Here</button></div>)
+      if(this.props.dummyBudgets.length < 1) {
+        (budgets=<div><p>You have No Budgets. Create 12 months of budgets</p>
+        <button onClick={this.createBudgets}>Click Here</button></div>)
       }
 
       return (
@@ -33,7 +37,7 @@ class BudgetLeftContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    budgets: state.budgets
+    dummyBudgets: state.dummyBudgets
 })
 
 export default connect(mapStateToProps)(BudgetLeftContainer)

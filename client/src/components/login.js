@@ -3,12 +3,15 @@ import * as actions from '../actions/index';
 import { connect } from 'react-redux';
 import App from './app'
 import $ from 'jquery';
+import {browserHistory} from 'react-router';
+import * as Cookies from 'js-cookie';
 import Logo from '../images/financeme.png'
 import Dollar from  '../images/icon-dollarbill.svg'
 import Steps from '../images/icon-steps.svg'
 import Phone from '../images/icon-phone.svg'
 import Wheel from '../images/icon-wheel.svg'
 import Girl from '../images/Girl-using-Gold-iPhone-5s.jpg'
+
 
 
 class Login extends React.Component {
@@ -49,7 +52,16 @@ class Login extends React.Component {
       var usernombre = this.userName.value
       var passWorde = this.password.value
       this.props.dispatch(actions.login(usernombre,passWorde))
-      this.setState({fireRedirect: true});
+      setTimeout(function() {
+        let token = Cookies.get('accessToken')
+        if(token) {
+        browserHistory.replace('/');
+        $('.modal-backdrop').remove()
+        }
+        else {
+        alert('UserName and Password Incorrect')
+        }
+      },800)
     }
     chooseUserName(event) {
       if(this.chooseUser.value.length < 6) {
@@ -97,10 +109,6 @@ class Login extends React.Component {
         let signUpPwHidden = this.state.signUpPasswordError ? 'hidden': '';
         let chooseUserT = this.state.chooseUserNameError ? 'hidden': '';
         let passMatch = this.state.passwordMatchError ? 'hidden': '';
-        if (this.props.loggedIn) {
-            $('.modal-backdrop').remove()
-            return <App />;
-        }
 
 
         return (
@@ -212,7 +220,7 @@ class Login extends React.Component {
                 type='password'/>
               <span className={`alert-danger ${pwHidden}`}>Password must contain 8 char, 1 capital letter, 1 number, 1 special char @#$%^&* </span>
               </div>
-              <button type='submit' onClick={this.onLoginSubmit} className='btn btn-primary aqua'>Login</button>
+                <button type='submit' onClick={this.onLoginSubmit} className='btn btn-primary aqua'>Login</button>
             </form>
             </div>
           <div className="modal-footer">

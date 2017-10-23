@@ -6,7 +6,8 @@ const initialState = {
   userName: '',
   token: '',
   loggedIn: false,
-  budgets: []
+  budgets: [],
+  dummyBudgets: []
 
 };
 
@@ -16,6 +17,14 @@ export default (state=initialState, action) => {
       return {...state,
                 token: action.token,
                 loggedIn: true
+        };
+    case actions.LOAD_DUMMY_BUDGETS:
+      return {...state,
+                dummyBudgets: [...action.dummyBudgets],
+            };
+    case actions.LOAD_BUDGET_SUCCESS:
+      return {...state,
+                budgets: [...action.budgets],
         };
 
    default:
