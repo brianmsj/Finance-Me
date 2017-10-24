@@ -1,13 +1,13 @@
 import * as actions from '../actions/index';
 
 const initialState = {
-  name:'',
-  userId: '',
-  userName: '',
+  firstname:'',
+  email: '',
+  lastname: '',
+  username: '',
   token: '',
   loggedIn: false,
   budgets: [],
-  dummyBudgets: []
 
 };
 
@@ -18,13 +18,14 @@ export default (state=initialState, action) => {
                 token: action.token,
                 loggedIn: true
         };
-    case actions.LOAD_DUMMY_BUDGETS:
-      return {...state,
-                dummyBudgets: [...action.dummyBudgets],
-            };
     case actions.LOAD_BUDGET_SUCCESS:
       return {...state,
-                budgets: [...action.budgets],
+                budgets: action.budgets,
+                email: action.email,
+                firstname: action.firstname,
+                lastname: action.lastname,
+                username: action.username
+
         };
 
    default:

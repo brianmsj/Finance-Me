@@ -53,7 +53,7 @@ class Login extends React.Component {
       var passWorde = this.password.value
       this.props.dispatch(actions.login(usernombre,passWorde))
       setTimeout(function() {
-        let token = Cookies.get('accessToken')
+        let token = sessionStorage.getItem('accessToken')
         if(token) {
         browserHistory.replace('/');
         $('.modal-backdrop').remove()

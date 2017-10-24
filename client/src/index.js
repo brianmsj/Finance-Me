@@ -15,7 +15,7 @@ import './card.css';
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
 
 export const checkAuth = () => {
-  const accessToken = Cookies.get('accessToken');
+  const accessToken = sessionStorage.getItem('accessToken')
   if (!accessToken){
     browserHistory.replace('/login');
   }

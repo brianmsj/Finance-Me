@@ -59,11 +59,10 @@ app.use('/api/budget', budgetRouter);
 
 app.get(
     '/api/protected',
-    passport.authenticate('jwt', {session: false}),
     (req, res) => {
         console.log(req.user)
         return res.json({
-            data: 'rosebud'
+            data: 'Budgets are Great!!!!'
         });
     }
 );

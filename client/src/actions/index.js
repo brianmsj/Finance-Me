@@ -20,15 +20,14 @@ export const setTokenFailure = (error) => ({
   error
 });
 export const LOAD_BUDGET_SUCCESS = 'LOAD_BUDGET_SUCCESS';
-export const loadBudgetSuccess = (budgets) => ({
+export const loadBudgetSuccess = (budgets,email,firstname,lastname,username) => ({
   type: LOAD_BUDGET_SUCCESS,
-  budgets
+  budgets,
+  email,
+  firstname,
+  lastname,
+  username,
 });
-export const LOAD_DUMMY_BUDGETS = 'LOAD_DUMMY_BUDGETS';
-export const loadDummyBudgets = (dummyBudgets) => ({
-  type: LOAD_DUMMY_BUDGETS,
-  dummyBudgets
-})
 
 
 
@@ -44,9 +43,10 @@ export const login = (username,password) => dispatch => {
      })
      .then((response) => response.json())
      .then(json => dispatch(setTokenSuccess(json.authToken)))
-     .then(json => Cookies.set('accessToken',json.token, { expires: 1 }))
+     .then(json => sessionStorage.setItem('accessToken',json.token))
      .catch(error => dispatch(setTokenFailure(error)))
    };
+
 
 
 export const newUser = (data) => dispatch => {
@@ -62,18 +62,18 @@ export const newUser = (data) => dispatch => {
 }
 
 const newBudgets = () => dispatch => {
-   let accessToken = Cookies.get('token');
+   let accessToken = sessionStorage.getItem('accessToken');
    return fetch(`api/budget/newbudgets`, {
      headers: {'Authorization': `bearer ${accessToken}`
    },
    method: 'POST'
  })
  .then((response) => response.json())
- .then((json) => dispatch(loadDummyBudgets(json)))
+ .then((json) => console.log(json))
 }
 
 const populateBudgets = () => dispatch => {
-   let accessToken = Cookies.get('token');
+   let accessToken = sessionStorage.getItem('accessToken');
    return fetch(`api/budget/mynewbudgets`, {
      headers: {'Authorization': `bearer ${accessToken}`
    }
@@ -83,18 +83,28 @@ const populateBudgets = () => dispatch => {
 }
 
 const getBudgets = () => dispatch => {
-   let accessToken = Cookies.get('token');
+   let accessToken = sessionStorage.getItem('accessToken');
    return fetch(`api/budget/mybudgets`, {
      headers: {'Authorization': `bearer ${accessToken}`
    }
  })
  .then((response) => response.json())
- .then(json => dispatch(loadBudgetSuccess(json[0].months)))
+ .then(json => dispatch(loadBudgetSuccess(json[0].months,json[0].email,json[0].firstName,json[0].lastName,json[0].username)));
+}
+export const loadUser = () => dispatch => {
+   let accessToken = sessionStorage.getItem('accessToken');
+   return fetch(`api/budget/mybudgets`, {
+     headers: {'Authorization': `bearer ${accessToken}`
+   }
+ })
+ .then((response) => response.json())
+ .then(json => dispatch(loadBudgetSuccess(json[0].months,json[0].email,json[0].firstName,json[0].lastName,json[0].username)));
 }
 
 export const budgetCreator = () => dispatch => {
   Promise.all([
     dispatch(newBudgets()),
-    dispatch(populateBudgets())
-  ]);
-}
+    dispatch(populateBudgets()),
+  ])
+  setTimeout(() => {dispatch(getBudgets())},5000)
+  }
