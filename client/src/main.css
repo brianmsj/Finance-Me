@@ -49,9 +49,41 @@
 .budget-item-title {
   font-size: 2.6rem;
 }
+.month-text {
+  padding-top: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  color: grey;
+  margin-bottom: 0px;
+  font-family: 'Arvo',sans-serif;
+}
+.month-container {
+  width: 700px;
+  margin: auto;
+  font-family: 'Arvo',sans-serif;
+}
+.year-container {
+  width: 700px;
+  margin: auto;
+  color: grey;
+  text-align: center;
+  font-family: 'Arvo',sans-serif;
+}
+.year-text {
+  font-family: 'Arvo',sans-serif;
+  font-size: 10px;
+  color: grey;
+}
+.month-box:hover {
+  background-color: #ffc04c;
+}
 .month-box {
-  border: 1.5px light grey;
+  border: 1.5px solid grey;
   border-radius: 5px;
+  text-align: center;
+  width: 100px;
+  margin-left: 5px;
+  margin-top: 10px;
   display: inline-block;
 }
 .budget-item-motto {
@@ -144,6 +176,9 @@
   }
   .budget-item-container {
     width: 400px;
+  }
+  .month-container {
+    width: 600px;
   }
 
 }

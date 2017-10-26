@@ -12,7 +12,7 @@ class MonthScroll extends React.Component {
     }
 
 
-  render() {
+   render() {
        const months = this.props.budgets
        if(!this.props) {
          return (
@@ -22,14 +22,20 @@ class MonthScroll extends React.Component {
        let monthScroller = months.map((data,index)=> {
             return (
               <div className='month-box' key={index}>
-              <p>{data.month}</p>
+                <p className='month-text'>{data.month.slice(0,3)}</p>
+                <p className='year-text'>{(new Date()).getFullYear()}</p>
               </div>
             )
 
        })
       return (
         <div>
+          <div className='year-container'>
+           <h3>{(new Date()).getFullYear()} Budgets</h3>
+          </div>
+          <div className='month-container'>
           {monthScroller}
+          </div>
         </div>
       )
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import * as actions from '../actions/index';
 import { connect } from 'react-redux';
-import App from './app'
 import $ from 'jquery';
 import {browserHistory} from 'react-router';
 import * as Cookies from 'js-cookie';
@@ -10,9 +9,8 @@ import Dollar from  '../images/icon-dollarbill.svg'
 import Steps from '../images/icon-steps.svg'
 import Phone from '../images/icon-phone.svg'
 import Wheel from '../images/icon-wheel.svg'
-import Girl from '../images/Girl-using-Gold-iPhone-5s.jpg'
 
-
+/* eslint-disable */
 
 class Login extends React.Component {
     constructor(props) {
@@ -124,7 +122,7 @@ class Login extends React.Component {
           <div className='budget-item-inline'>
           <div className='budget-item-container'>
             <div className='icon-container'>
-             <img src={Dollar} />
+             <img role='presentation' src={Dollar} />
             </div>
             <p className='budget-item-title'>Easy Budgeting</p>
             <p className='budget-item-motto'>No more pen, paper or complicated spreadsheets</p>
@@ -133,7 +131,7 @@ class Login extends React.Component {
           </div>
           <div className='budget-item-container'>
             <div className='icon-container'>
-             <img src={Wheel} />
+             <img role='presentation' src={Wheel} />
             </div>
             <p className='budget-item-title'>Helpful Visuals</p>
             <p className='budget-item-motto'>Quick views for whats planned, spent and remaining.</p>
@@ -142,7 +140,7 @@ class Login extends React.Component {
           </div>
           <div className='budget-item-container'>
             <div className='icon-container'>
-             <img src={Phone} />
+             <img role='presentation' src={Phone} />
             </div>
             <p className='budget-item-title'>Budget Anywhere</p>
             <p className='budget-item-motto'>Access FinanceMe from your computer, iPhone or Android.</p>
@@ -151,7 +149,7 @@ class Login extends React.Component {
           </div>
           <div className='budget-item-container four'>
             <div className='icon-container'>
-             <img src={Steps} />
+             <img role='presentation'src={Steps} />
             </div>
             <p className='budget-item-title'>Proven Plan</p>
             <p className='budget-item-motto'>A plan that has helped millions beat debt and build wealth.</p>
