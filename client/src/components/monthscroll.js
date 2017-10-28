@@ -11,7 +11,6 @@ class MonthScroll extends React.Component {
       }
     }
 
-
    render() {
        const months = this.props.budgets
        if(!this.props) {
