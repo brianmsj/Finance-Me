@@ -9,6 +9,7 @@ const passport = require('passport');
 const {router: usersRouter} = require('./routes/userRoutes');
 const {router: authRouter } = require('./routes/authRoutes');
 const {router: budgetRouter} = require('./routes/budgetRoutes');
+const {router: monthRouter} = require('./routes/monthroute');
 const {basicStrategy, jwtStrategy} = require('./routes/authStrategy');
 
 
@@ -54,6 +55,7 @@ passport.use(jwtStrategy);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/budget', budgetRouter);
+app.use('/api/monthroute',monthRouter)
 
 
 
