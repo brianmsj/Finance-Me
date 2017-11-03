@@ -14,6 +14,17 @@ export const setTokenSuccess = (token) => ({
   type: SET_TOKEN_SUCCESS,
   token
 });
+
+export const NEW_BUDGET_FAILURE = 'NEW_BUDGET_FAILURE';
+export const newBudgetFailure = (error) => ({
+  type: NEW_BUDGET_FAILURE,
+  error
+});
+export const NEW_USER_FAILURE = 'NEW_USER_FAILURE';
+export const newUserFailure = (error) => ({
+  type: NEW_USER_FAILURE,
+  error
+});
 export const SET_TOKEN_FAILURE = 'SET_TOKEN_FAILURE';
 export const setTokenFailure = (error) => ({
   type: SET_TOKEN_FAILURE,
@@ -58,7 +69,7 @@ export const newUser = (data) => dispatch => {
       body: JSON.stringify(data)
     })
     .then((response) => response.json())
-    .then(json => console.log(json));
+    .catch((error) => dispatch(newUserFailure()))
 }
 
 const newBudgets = () => dispatch => {
@@ -69,7 +80,7 @@ const newBudgets = () => dispatch => {
    method: 'POST'
  })
  .then((response) => response.json())
- .then((json) => console.log(json))
+ .catch((error) => dispatch(newBudgetFailure()))
 }
 
 const populateBudgets = () => dispatch => {
@@ -79,7 +90,6 @@ const populateBudgets = () => dispatch => {
    }
  })
  .then((response) => response.json())
- .then((json) => console.log(json))
 }
 
 const getBudgets = () => dispatch => {
@@ -89,7 +99,7 @@ const getBudgets = () => dispatch => {
    }
  })
  .then((response) => response.json())
- .then(json => dispatch(loadBudgetSuccess(json[0].months,json[0].email,json[0].firstName,json[0].lastName,json[0].username)));
+ .then(json => dispatch(loadBudgetSuccess(json[0].months,json[0].email,json[0].firstName,json[0].lastName,json[0].username)))
 }
 export const loadUser = () => dispatch => {
    let accessToken = sessionStorage.getItem('accessToken');
@@ -101,10 +111,13 @@ export const loadUser = () => dispatch => {
  .then(json => dispatch(loadBudgetSuccess(json[0].months,json[0].email,json[0].firstName,json[0].lastName,json[0].username)));
 }
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 export const budgetCreator = () => dispatch => {
   Promise.all([
     dispatch(newBudgets()),
     dispatch(populateBudgets()),
+    dispatch(getBudgets())
   ])
-  setTimeout(() => {dispatch(getBudgets())},5000)
   }

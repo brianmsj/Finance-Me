@@ -24,14 +24,13 @@ class BudgetLeftContainer extends React.Component {
     }
 
 
-
-
     render() {
       let budgets;
       if(this.props.budgets.length < 1) {
         (budgets=<div><p>You have No Budgets. Create 12 months of budgets</p>
         <button onClick={this.createBudgets}>Click Here</button>
         <button onClick={this.getUserTemporary}>Get User</button>
+
         </div>)
       }
       else {(budgets=<MonthScroll />)}

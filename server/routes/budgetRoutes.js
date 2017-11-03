@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const {Month} = require('../models/month');
 const {User} = require('../models/user');
+const {Categories} = require('../models/categories');
 
 const router = express.Router();
 
@@ -51,7 +52,17 @@ router.get('/removebudgets', passport.authenticate('jwt', {session: false}), (re
       .catch(error => res.status(500).json(error))
     })
 
-
+ router.post('/newcategory', passport.authenticate('jwt', {session: false}),(req,res) => {
+       var record = {
+         category: req.body.category
+       }
+       Categories.create({record})
+       .then(data => {
+       Month.findOneAndUpdate({createdBy: req.user._id,month:req.params.month}, {$push: {categories: data}})
+       })
+      .then(data => res.status(200).json(data))
+      .catch(error => res.status(500).json(error));
+    })
 
 
 

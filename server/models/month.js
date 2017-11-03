@@ -9,7 +9,7 @@ const MonthSchema = new mongoose.Schema({
    ref: 'User',
    required: true
  },
- categories: [{type: Schema.Types.ObjectId, ref: 'Categories'}]
+ categories: []
 
 })
 
