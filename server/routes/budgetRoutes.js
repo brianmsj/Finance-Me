@@ -11,24 +11,26 @@ const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
+var monthData = ["January","February","March","April","May","June","July","August",
+"September","October","November","December"]
 
-router.post('/newbudgets',passport.authenticate('jwt', {session: false}),(req,res) => {
-  var id = req.user._id
-  var months = [{month:"January",createdBy:id},
-                {month:"February",createdBy:id},
-                {month:"March",createdBy:id},
-                {month:"April",createdBy:id},
-                {month:"May",createdBy:id},
-                {month:"June",createdBy:id},
-                {month:"July",createdBy:id},
-                {month:"August",createdBy:id},
-                {month:"September",createdBy:id},
-                {month:"October",createdBy:id},
-                {month:"November",createdBy:id},
-                {month:"December",createdBy:id}]
-   Month.insertMany(months)
-  .then(data => res.status(200).json(data))
-  .catch(error => res.status(500).json(error));
+router.post('/newbudget',passport.authenticate('jwt', {session: false}),(req,res) => {
+  var d = new Date()
+  var newMonth = {
+    month: monthData[d.getMonth()],
+    createdBy: req.user._id
+  }
+  Month.find(newMonth)
+  .count()
+  .then(count => {
+    if(count > 0)
+    return res.json({message: "Budget already exists"})
+    else {
+      Month.create(newMonth)
+      .then(data => res.status(200).json(data))
+      .catch(error => res.status(500).json(error));
+    }
+  })
 })
 
 router.get('/mynewbudgets', passport.authenticate('jwt', {session: false}), (req, res) => {
