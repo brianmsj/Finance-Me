@@ -32,6 +32,39 @@ router.post('/newbudget',passport.authenticate('jwt', {session: false}),(req,res
     }
   })
 })
+router.get('/currentbudget/:curmonth', passport.authenticate('jwt', {session: false}), (req,res) => {
+  var d = new Date()
+  var current;
+  if(req.params.curmonth == monthData[d.getMonth()]) {
+    current = req.params.curmonth
+  }
+  else {
+    return res.status(500).json({error: "Not retrieving current month"})
+  }
+  var currentBudget = {
+    month: current,
+    createdBy: req.user._id
+  }
+  Month.find(currentBudget)
+  .count()
+  .then(count => {
+    if(count < 1) {
+      return res.json({message: "create budget"})
+    }
+    else {
+      Month.find(currentBudget)
+      .then(data => res.status(200).json(data))
+      .catch(error => res.status(500).json(error))
+    }
+  })
+})
+router.post('/newcategory',passport.authenticate('jwt',{session: false}, (req,res) => {
+   var newCategory = {
+     category: req.body.category
+   }
+   Categories.create(newCategory)
+
+}))
 
 router.get('/mynewbudgets', passport.authenticate('jwt', {session: false}), (req, res) => {
   Month.find({createdBy:req.user._id})
