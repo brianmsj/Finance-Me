@@ -39,7 +39,7 @@ router.get('/currentbudget/:curmonth', passport.authenticate('jwt', {session: fa
     current = req.params.curmonth
   }
   else {
-    return res.status(500).json({error: "Not retrieving current month"})
+    return res.status(500).json({error: "ERROR"})
   }
   var currentBudget = {
     month: current,
@@ -58,6 +58,8 @@ router.get('/currentbudget/:curmonth', passport.authenticate('jwt', {session: fa
     }
   })
 })
+
+
 router.post('/newcategory',passport.authenticate('jwt',{session: false}, (req,res) => {
    var newCategory = {
      category: req.body.category

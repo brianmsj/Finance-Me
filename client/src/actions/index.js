@@ -14,6 +14,12 @@ export const setTokenSuccess = (token) => ({
   type: SET_TOKEN_SUCCESS,
   token
 });
+export const CURRENT_BUDGET_SUCCESS = 'CURRENT_BUDGET_SUCCESS';
+export const currentBudgetSuccess = (month,categories) => ({
+  type: CURRENT_BUDGET_SUCCESS,
+  month,
+  categories
+});
 
 export const NEW_BUDGET_FAILURE = 'NEW_BUDGET_FAILURE';
 export const newBudgetFailure = (error) => ({
@@ -83,6 +89,28 @@ const newBudgets = () => dispatch => {
  .catch((error) => dispatch(newBudgetFailure()))
 }
 
+export const currentMonth = () => dispatch => {
+  var monthList = ["January","February","March","April","May","June","July","August",
+  "September","October","November","December"]
+  var d = new Date()
+  d = monthList[d.getMonth()]
+  let accessToken = sessionStorage.getItem('accessToken');
+  return fetch(`api/budget/currentbudget/${d}`, {
+     headers: {'Authorization': `bearer ${accessToken}`}
+     }
+  )
+  .then((response) => {
+    if(response.ok) {
+      return response.json()
+    }
+    throw new Error('Need to create current Month')
+  })
+  .then((json) => dispatch(currentBudgetSuccess(json[0].month,json[0].categories)))
+  .catch(error => console.log(error))
+}
+
+//CURRENT ACTION
+
 const populateBudgets = () => dispatch => {
    let accessToken = sessionStorage.getItem('accessToken');
    return fetch(`api/budget/mynewbudgets`, {
@@ -110,14 +138,3 @@ export const loadUser = () => dispatch => {
  .then((response) => response.json())
  .then(json => dispatch(loadBudgetSuccess(json[0].months,json[0].email,json[0].firstName,json[0].lastName,json[0].username)));
 }
-
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-export const budgetCreator = () => dispatch => {
-  Promise.all([
-    dispatch(newBudgets()),
-    dispatch(populateBudgets()),
-    dispatch(getBudgets())
-  ])
-  }

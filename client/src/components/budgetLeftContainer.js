@@ -3,7 +3,7 @@ import * as actions from '../actions/index';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import BudgetCard from './budgetCard'
-import MonthScroll from './monthscroll'
+import CreateBudget from './createbudget';
 
 
 
@@ -16,6 +16,9 @@ class BudgetLeftContainer extends React.Component {
       this.getUserTemporary = this.getUserTemporary.bind(this)
     }
 
+    componentDidMount() {
+     this.props.dispatch(actions.currentMonth());
+    }
     createBudgets() {
       this.props.dispatch(actions.budgetCreator());
     }
@@ -24,21 +27,20 @@ class BudgetLeftContainer extends React.Component {
     }
 
 
-    render() {
-      let budgets;
-      if(this.props.budgets.length < 1) {
-        (budgets=<div><p>You have No Budgets. Create 12 months of budgets</p>
-        <button onClick={this.createBudgets}>Click Here</button>
-        <button onClick={this.getUserTemporary}>Get User</button>
 
-        </div>)
+    render() {
+      var currentMonth;
+      if(this.props.currentMonth == false) {
+        currentMonth = <CreateBudget />
       }
-      else {(budgets=<MonthScroll />)}
+      else {
+        currentMonth = <p>Here is your current budget</p>
+      }
 
 
       return (
       <div className='master-card-container'>
-        {budgets}
+        {currentMonth}
       </div>
     )
 
@@ -46,7 +48,8 @@ class BudgetLeftContainer extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-    budgets: state.budgets
+   currentMonth: state.currentMonth,
+   categories: state.categories
 })
 
 export default connect(mapStateToProps)(BudgetLeftContainer)

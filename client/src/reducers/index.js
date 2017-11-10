@@ -7,7 +7,9 @@ const initialState = {
   username: '',
   token: '',
   loggedIn: false,
-  budgets: [],
+  currentMonth: false,
+  month: '',
+  categories: []
 
 };
 
@@ -18,14 +20,11 @@ export default (state=initialState, action) => {
                 token: action.token,
                 loggedIn: true
         };
-    case actions.LOAD_BUDGET_SUCCESS:
+    case actions.CURRENT_BUDGET_SUCCESS:
       return {...state,
-                budgets: action.budgets,
-                email: action.email,
-                firstname: action.firstname,
-                lastname: action.lastname,
-                username: action.username
-
+                currentMonth: true,
+                month: action.month,
+                categories: action.categories,
         };
 
    default:
