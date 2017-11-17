@@ -77,7 +77,21 @@ font-size: 16px;
   display: inline-block;
   margin-left: 106px;
 }
-.master-card-container {
-  margin-left: 50px;
-  background-image: ('./images/dust_scratches.png')
+body{
+  background-image: url('./images/dust_scratches.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+.create-budget-container {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 1.2px 1.2px lightgrey;
+
+
 }

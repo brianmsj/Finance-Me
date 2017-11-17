@@ -20,7 +20,7 @@ class CreateBudget extends React.Component {
 
      return (
      <div>
-      <div>
+      <div className='create-budget-container'>
        <h2>You dont have a {d} budget, Create one now!</h2>
        <button className='btn-primary'>New</button>
       </div>
