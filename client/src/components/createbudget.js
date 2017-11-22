@@ -2,6 +2,7 @@ import React from 'react';
 import * as actions from '../actions/index';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
 class CreateBudget extends React.Component {
@@ -22,9 +23,10 @@ class CreateBudget extends React.Component {
      <div>
       <div className='create-budget-container'>
        <h2>You dont have a {d} budget, Create one now!</h2>
-       <button className='btn-primary'>New</button>
+       <button className='btn btn-primary btn-lg'>New</button>
       </div>
-     </div>
+      </div>
+
 
   )
 }

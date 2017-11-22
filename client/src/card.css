@@ -85,13 +85,17 @@ body{
 }
 .create-budget-container {
   margin: auto;
+  font-family: 'Arvo', sans-serif;
   width: 50%;
   text-align: center;
   background-color: #fff;
   border-radius: 5px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-right: 15px;
+  padding-left: 15px;
   box-shadow: 1.2px 1.2px lightgrey;
+  margin-top: 15%;
 
 
 }

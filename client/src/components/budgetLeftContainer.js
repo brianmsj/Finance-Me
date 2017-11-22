@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import BudgetCard from './budgetCard'
 import CreateBudget from './createbudget';
+import Logo from '../images/financeme.png'
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
 
@@ -32,6 +34,8 @@ class BudgetLeftContainer extends React.Component {
       var currentMonth;
       if(this.props.currentMonth == false) {
         currentMonth = <CreateBudget />
+
+
       }
       else {
         currentMonth = <p>Here is your current budget</p>
@@ -40,6 +44,9 @@ class BudgetLeftContainer extends React.Component {
 
       return (
       <div className='master-card-container'>
+       <div>
+       <img src={Logo} />
+       </div>
         {currentMonth}
       </div>
     )
