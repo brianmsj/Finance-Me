@@ -14,6 +14,11 @@ export const setTokenSuccess = (token) => ({
   type: SET_TOKEN_SUCCESS,
   token
 });
+export const NEW_BUDGET_SUCCESS = 'NEW_BUDGET_SUCCESS';
+export const newBudgetSuccess = (month, categories) => ({
+  type: NEW_BUDGET_SUCCESS,
+  month
+})
 export const CURRENT_BUDGET_SUCCESS = 'CURRENT_BUDGET_SUCCESS';
 export const currentBudgetSuccess = (month,categories) => ({
   type: CURRENT_BUDGET_SUCCESS,
@@ -78,15 +83,16 @@ export const newUser = (data) => dispatch => {
     .catch((error) => dispatch(newUserFailure()))
 }
 
-const newBudgets = () => dispatch => {
+export const newBudget = () => dispatch => {
    let accessToken = sessionStorage.getItem('accessToken');
-   return fetch(`api/budget/newbudgets`, {
+   return fetch(`api/budget/newbudget`, {
      headers: {'Authorization': `bearer ${accessToken}`
    },
    method: 'POST'
  })
  .then((response) => response.json())
- .catch((error) => dispatch(newBudgetFailure()))
+ .then(data => dispatch(currentBudgetSuccess(data.month,data.categories)))
+ .catch(error => dispatch(newBudgetFailure()));
 }
 
 export const currentMonth = () => dispatch => {

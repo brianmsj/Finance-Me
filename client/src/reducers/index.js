@@ -26,6 +26,12 @@ export default (state=initialState, action) => {
                 month: action.month,
                 categories: action.categories,
         };
+    case actions.NEW_BUDGET_SUCCESS:
+      return {...state,
+                currentMonth: true,
+                month: action.month,
+                categories: action.categories
+      };
 
    default:
    }

@@ -11,6 +11,10 @@ class CreateBudget extends React.Component {
      this.state = {
 
      }
+     this.createBudget = this.createBudget.bind(this)
+   }
+   createBudget() {
+     this.props.dispatch(actions.newBudget())
    }
 
    render() {
@@ -23,7 +27,7 @@ class CreateBudget extends React.Component {
      <div>
       <div className='create-budget-container'>
        <h2>You dont have a {d} budget, Create one now!</h2>
-       <button className='btn btn-primary btn-lg'>New</button>
+       <button onClick={this.createBudget} className='btn btn-primary btn-lg'>New</button>
       </div>
       </div>
 
