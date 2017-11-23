@@ -34,11 +34,16 @@ class BudgetLeftContainer extends React.Component {
       var currentMonth;
       if(this.props.currentMonth == false) {
         currentMonth = <CreateBudget />
-
-
       }
       else {
-        currentMonth = <p>Here is your current budget</p>
+        var categoryMap = this.props.categories
+        console.log(categoryMap)
+        currentMonth = categoryMap.map((item,index) => {
+          return <BudgetCard
+            key={index}
+            category={item}
+            />
+        })
       }
 
 
