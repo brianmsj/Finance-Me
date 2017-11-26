@@ -28,12 +28,12 @@ class BudgetCard extends React.Component {
 
     render() {
 
-      var category = this.props.category
+      var categoryProp = this.props.category
       let showInput;
       if(!this.state.showInput) {showInput=<p
         className='card-headers-inline title-para'
         id='divone'
-        onClick={this.changeToInput}>{category.toUpperCase()}
+        onClick={this.changeToInput}>{categoryProp.toUpperCase()}
         </p>}
       else {showInput=<input
         className='card-headers-inline title-input'
