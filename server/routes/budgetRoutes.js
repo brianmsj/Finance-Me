@@ -33,15 +33,15 @@ router.post('/newbudget',passport.authenticate('jwt', {session: false}),(req,res
   })
 })
 router.get('/currentbudget/:curmonth', passport.authenticate('jwt', {session: false}), (req,res) => {
-  var d = new Date()
-  var current;
+  let d = new Date()
+  let current;
   if(req.params.curmonth == monthData[d.getMonth()]) {
     current = req.params.curmonth
   }
   else {
     return res.status(500).json({error: "ERROR"})
   }
-  var currentBudget = {
+  let currentBudget = {
     month: current,
     createdBy: req.user._id
   }
@@ -81,7 +81,6 @@ router.put('/newcategory/:curmonth', passport.authenticate('jwt', {session: fals
     .catch(error => res.status(500).json(error))
   }
   )
-
 })})
 
 
