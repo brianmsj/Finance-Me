@@ -36,6 +36,7 @@ class BudgetLeftContainer extends React.Component {
         currentMonth = <CreateBudget />
       }
       else {
+        var newBudgetSquare = <BudgetCard />
         var categoryMap = this.props.categories
         console.log(categoryMap)
         currentMonth = categoryMap.map((item,index) => {
@@ -53,6 +54,7 @@ class BudgetLeftContainer extends React.Component {
        <img src={Logo} />
        </div>
         {currentMonth}
+        {newBudgetSquare}
       </div>
     )
 

@@ -33,7 +33,7 @@ class BudgetCard extends React.Component {
       if(!this.state.showInput) {showInput=<p
         className='card-headers-inline title-para'
         id='divone'
-        onClick={this.changeToInput}>{categoryProp.toUpperCase()}
+        onClick={this.changeToInput}>{categoryProp ? categoryProp.toUpperCase() : "Untitled"}
         </p>}
       else {showInput=<input
         className='card-headers-inline title-input'

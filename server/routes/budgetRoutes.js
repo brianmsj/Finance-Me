@@ -11,7 +11,7 @@ const router = express.Router();
 
 const jsonParser = bodyParser.json();
 
-var monthData = ["January","February","March","April","May","June","July","August",
+const monthData = ["January","February","March","April","May","June","July","August",
 "September","October","November","December"]
 
 router.post('/newbudget',passport.authenticate('jwt', {session: false}),(req,res) => {
@@ -58,15 +58,33 @@ router.get('/currentbudget/:curmonth', passport.authenticate('jwt', {session: fa
     }
   })
 })
+router.put('/newcategory/:curmonth', passport.authenticate('jwt', {session: false}), (req,res) => {
+  Categories.create({category:req.body.category})
+  .then((item) => {
+  let d = new Date()
+  let current;
+  if(req.params.curmonth == monthData[d.getMonth()]) {
+    current = req.params.curmonth
+  }
+  else {
+    return res.status(500).json({error: "ERROR"})
+  }
+  let currentBudget = {
+    month: current,
+    createdBy: req.user._id
+  }
+  Month.findOneAndUpdate(currentBudget, {$push: {categories: item}})
+  .exec()
+  .then((response) => {
+    Month.find(response._id)
+    .then(data => res.status(200).json(data))
+    .catch(error => res.status(500).json(error))
+  }
+  )
+
+})})
 
 
-router.post('/newcategory',passport.authenticate('jwt',{session: false}, (req,res) => {
-   var newCategory = {
-     category: req.body.category
-   }
-   Categories.create(newCategory)
-
-}))
 
 router.get('/mynewbudgets', passport.authenticate('jwt', {session: false}), (req, res) => {
   Month.find({createdBy:req.user._id})
