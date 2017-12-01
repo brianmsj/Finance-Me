@@ -27,7 +27,6 @@ class BudgetCard extends React.Component {
 
 
     render() {
-
       var categoryProp = this.props.category
       let showInput;
       if(!this.state.showInput) {showInput=<p

@@ -96,9 +96,9 @@ export const newBudget = () => dispatch => {
 }
 
 export const currentMonth = () => dispatch => {
-  var monthList = ["January","February","March","April","May","June","July","August",
+  let monthList = ["January","February","March","April","May","June","July","August",
   "September","October","November","December"]
-  var d = new Date()
+  let d = new Date()
   d = monthList[d.getMonth()]
   let accessToken = sessionStorage.getItem('accessToken');
   return fetch(`api/budget/currentbudget/${d}`, {
@@ -114,7 +114,23 @@ export const currentMonth = () => dispatch => {
   .then((json) => dispatch(currentBudgetSuccess(json[0].month,json[0].categories)))
   .catch(error => console.log(error))
 }
+export const newCategory = (category) => dispatch => {
+  let monthList = ["January","February","March","April","May","June","July","August",
+  "September","October","November","December"]
+  let d = new Date()
+  d = monthList[d.getMonth()]
+  let accessToken = sessionStorage.getItem('accessToken');
+  return fetch(`api/budget/newcategory/${d}`, {
+     headers: {'Authorization': `bearer ${accessToken}`,
+               'Content-Type': 'application/json'
+   },
+     method: 'PUT',
+     body: JSON.stringify(category)
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
 
+}
 //CURRENT ACTION
 
 const populateBudgets = () => dispatch => {

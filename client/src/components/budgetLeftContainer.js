@@ -13,19 +13,28 @@ class BudgetLeftContainer extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
+        categories: []
       }
       this.createBudgets = this.createBudgets.bind(this)
       this.getUserTemporary = this.getUserTemporary.bind(this)
+      this.createCategory = this.createCategory.bind(this)
     }
 
     componentDidMount() {
      this.props.dispatch(actions.currentMonth());
+
     }
     createBudgets() {
       this.props.dispatch(actions.budgetCreator());
     }
     getUserTemporary() {
       this.props.dispatch(actions.loadUser());
+    }
+    createCategory() {
+      const data = {
+        category: "Fooding"
+      }
+      this.props.dispatch(actions.newCategory(data));
     }
 
 
@@ -38,11 +47,10 @@ class BudgetLeftContainer extends React.Component {
       else {
         var newBudgetSquare = <BudgetCard />
         var categoryMap = this.props.categories
-        console.log(categoryMap)
         currentMonth = categoryMap.map((item,index) => {
           return <BudgetCard
             key={index}
-            category={item}
+            category={item.category}
             />
         })
       }
@@ -55,6 +63,7 @@ class BudgetLeftContainer extends React.Component {
        </div>
         {currentMonth}
         {newBudgetSquare}
+        <button onClick={this.createCategory}>Create New Category</button>
       </div>
     )
 
